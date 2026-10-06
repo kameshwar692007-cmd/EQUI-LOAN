@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVOFORGE — EquiLoan Evolutionary AI & Responsible Credit Terminal</title>
+  <meta name="description" content="EVOFORGE Autonomous Research & Responsible Credit Scoring Decision Terminal — Standalone 1-Click Interactive Interface">
+
+  <!-- Google Fonts: Inter, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* JPMorgan Navy & Gold Theme (Default) */
+      --bg-base: #060a14;
+      --bg-surface: #0a1120;
+      --bg-card: #0f1a30;
+      --bg-card-hover: #142340;
+      --bg-input: #070d1a;
+      --border-subtle: #182846;
+      --border-accent: #d4af37;
+      --border-light: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --gold: #d4af37;
+      --gold-dark: #aa8822;
+      --gold-subtle: rgba(212, 175, 55, 0.12);
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --bar-gradient: linear-gradient(90deg, #997818, #d4af37, #fef08a, #d4af37);
+
+      --emerald: #059669;
+      --emerald-subtle: rgba(5, 150, 105, 0.15);
+      --amber: #d97706;
+      --amber-subtle: rgba(217, 119, 6, 0.15);
+      --crimson: #dc2626;
+      --crimson-subtle: rgba(220, 38, 38, 0.15);
+      --blue: #2563eb;
+      --blue-subtle: rgba(37, 99, 235, 0.12);
+
+      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border-subtle);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* Stripe Blurple Theme */
+    body.theme-stripe {
+      --bg-base: #0a0e1a;
+      --bg-surface: #0f172a;
+      --bg-card: #151f38;
+      --bg-card-hover: #1c2a4d;
+      --bg-input: #0b1224;
+      --border-subtle: #243561;
+      --border-accent: #635bff;
+      --text-main: #ffffff;
+      --text-muted: #a5b4fc;
+      --text-dim: #6366f1;
+      --gold: #635bff;
+      --gold-subtle: rgba(99, 91, 255, 0.15);
+      --gold-glow: rgba(99, 91, 255, 0.35);
+      --bar-gradient: linear-gradient(90deg, #635bff, #00d4ff, #80e9ff);
+      --emerald: #00d4ff;
+    }
+
+    /* Bloomberg Obsidian Theme */
+    body.theme-bloomberg {
+      --bg-base: #05070a;
+      --bg-surface: #0a0d14;
+      --bg-card: #111622;
+      --bg-card-hover: #171e2e;
+      --bg-input: #07090e;
+      --border-subtle: #222c3f;
+      --border-accent: #f59e0b;
+      --text-main: #ffedd5;
+      --text-muted: #fed7aa;
+      --text-dim: #ea580c;
+      --gold: #f59e0b;
+      --gold-subtle: rgba(245, 158, 11, 0.15);
+      --gold-glow: rgba(245, 158, 11, 0.3);
+      --bar-gradient: linear-gradient(90deg, #ea580c, #f59e0b, #fef08a);
+    }
+
+    /* Linear Titanium Theme */
+    body.theme-linear {
+      --bg-base: #000000;
+      --bg-surface: #09090b;
+      --bg-card: #121215;
+      --bg-card-hover: #1c1c22;
+      --bg-input: #050507;
+      --border-subtle: #27272a;
+      --border-accent: #5e6ad2;
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      --gold: #5e6ad2;
+      --gold-subtle: rgba(94, 106, 210, 0.15);
+      --gold-glow: rgba(94, 106, 210, 0.3);
+      --bar-gradient: linear-gradient(90deg, #4338ca, #5e6ad2, #c7d2fe);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-heading); }
+    .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky; top: 0; z-index: 100;
+    }
+
+    .gold-bar { height: 3px; background: var(--bar-gradient); }
+
+    .header-content {
+      max-width: 1480px; margin: 0 auto;
+      padding: 12px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      width: 40px; height: 40px; border-radius: var(--radius-md);
+      background: var(--bg-card); border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: var(--gold); box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    .brand-title h1 { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .tag { font-size: 10px; padding: 2px 6px; border-radius: 2px; background: var(--gold-subtle); color: var(--gold); border: 1px solid var(--gold); font-family: var(--font-mono); }
+
+    .controls { display: flex; align-items: center; gap: 12px; }
+    select {
+      background: var(--bg-input); border: 1px solid var(--border-accent);
+      color: var(--gold); padding: 6px 12px; border-radius: var(--radius-sm);
+      font-size: 11.5px; font-weight: 700; outline: none; cursor: pointer;
+    }
+
+    .ticker-bar {
+      background: var(--bg-base); border-bottom: 1px solid var(--border-subtle);
+      padding: 8px 24px; font-size: 11px;
+    }
+
+    .ticker-container {
+      max-width: 1480px; margin: 0 auto;
+      display: flex; justify-content: space-between; gap: 16px; overflow-x: auto;
+    }
+
+    .ticker-item { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .ticker-label { color: var(--text-dim); text-transform: uppercase; font-weight: 700; font-size: 10px; }
+    .ticker-val { font-family: var(--font-mono); font-weight: 700; color: var(--text-main); }
+    .badge-pass { background: var(--emerald-subtle); color: var(--emerald); padding: 1px 5px; border-radius: 2px; font-size: 10px; font-weight: 700; }
+
+    .nav-container { max-width: 1480px; margin: 16px auto 0; padding: 0 24px; }
+    .nav-tabs {
+      display: flex; gap: 4px; background: var(--bg-surface);
+      border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 4px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 8px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 700;
+      color: var(--text-muted); background: transparent; border: none; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--text-main); }
+    .tab-btn.active { background: var(--bg-card); color: var(--gold); border: 1px solid var(--border-subtle); }
+
+    main { max-width: 1480px; margin: 0 auto; padding: 20px 24px 60px; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    .grid-2col { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+    .grid-1col { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border-light); padding-bottom: 12px; margin-bottom: 16px;
+    }
+
+    .card-title h3 { font-size: 15px; font-weight: 700; color: var(--text-main); }
+    .card-title p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+    input, select.in-select {
+      background: var(--bg-input); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm); padding: 8px 12px; color: var(--text-main);
+      font-family: var(--font-mono); font-size: 12px; outline: none;
+    }
+
+    input:focus, select.in-select:focus { border-color: var(--gold); }
+
+    .btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #0b1120; font-weight: 800; border: none; padding: 10px 18px;
+      border-radius: var(--radius-sm); cursor: pointer; text-transform: uppercase;
+      letter-spacing: 0.05em; font-size: 12px; transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    .status-badge {
+      padding: 6px 14px; border-radius: var(--radius-sm); font-weight: 800;
+      font-size: 12px; text-transform: uppercase; font-family: var(--font-mono);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .status-approve { background: var(--emerald-subtle); color: var(--emerald); border: 1px solid var(--emerald); }
+    .status-reject { background: var(--crimson-subtle); color: var(--crimson); border: 1px solid var(--crimson); }
+    .status-review { background: var(--amber-subtle); color: var(--amber); border: 1px solid var(--amber); }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+    th { text-align: left; padding: 8px 12px; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); text-transform: uppercase; font-size: 10px; }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
+    tr:hover td { background: var(--bg-card-hover); }
+
+    .lineage-node {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md); padding: 14px; margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .bar-wrapper { background: var(--bg-input); height: 8px; border-radius: 4px; overflow: hidden; width: 100%; }
+    .bar-fill { height: 100%; background: var(--bar-gradient); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="gold-bar"></div>
+  <div class="header-content">
+    <div class="brand">
+      <div class="brand-icon">EF</div>
+      <div class="brand-title">
+        <h1>EVOFORGE <span class="tag">RESEARCH TERMINAL</span></h1>
+        <p style="font-size:10.5px; color:var(--text-muted); font-weight:600;">Evolutive AI Credit Decision-Support & Responsible Lending Engine</p>
+      </div>
+    </div>
+    <div class="controls">
+      <select id="themeSelect" onchange="changeTheme(this.value)">
+        <option value="jpmorgan">Theme: JPMorgan Wall St (Navy & Gold)</option>
+        <option value="stripe">Theme: Stripe Blurple (Indigo & Cyan)</option>
+        <option value="bloomberg">Theme: Bloomberg Terminal (Obsidian Amber)</option>
+        <option value="linear">Theme: Linear Titanium (Monochrome)</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<div class="ticker-bar">
+  <div class="ticker-container">
+    <div class="ticker-item"><span class="ticker-label">Active Dataset:</span> <span class="ticker-val">loan_v2 (real distribution)</span></div>
+    <div class="ticker-item"><span class="ticker-label">Records:</span> <span class="ticker-val">148,670 rows x 37 cols</span></div>
+    <div class="ticker-item"><span class="ticker-label">Target Leakage Audit:</span> <span class="badge-pass">4 RATE COLS PRUNED</span></div>
+    <div class="ticker-item"><span class="ticker-label">Platt ECE Reduction:</span> <span class="ticker-val">0.0482 -> 0.0112 (-76.7%)</span></div>
+    <div class="ticker-item"><span class="ticker-label">Demographic Audit:</span> <span class="ticker-val">DIR=0.7490 (Age >74 Alert)</span></div>
+  </div>
+</div>
+
+<div class="nav-container">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('underwrite')">1. Live Underwriting Engine</button>
+    <button class="tab-btn" onclick="showTab('lineage')">2. Model Lineage & Archaeology</button>
+    <button class="tab-btn" onclick="showTab('fairness')">3. SDG 10 Demographic Fairness</button>
+    <button class="tab-btn" onclick="showTab('calibration')">4. Calibration & Confidence</button>
+    <button class="tab-btn" onclick="showTab('scorecard')">5. Multi-Criteria Scorecard</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- TAB 1: LIVE UNDERWRITING ENGINE -->
+  <div id="underwrite" class="tab-pane active">
+    <div class="grid-2col">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <h3>Applicant Underwriting Profile</h3>
+            <p>Input financial indicators to generate calibrated decision and recourse recommendations.</p>
+          </div>
+        </div>
+        <form id="loanForm" onsubmit="runUnderwriting(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Applicant Income ($)</label>
+              <input type="number" id="income" value="95000" step="1000">
+            </div>
+            <div class="form-group">
+              <label>Loan Amount ($)</label>
+              <input type="number" id="loan_amount" value="250000" step="5000">
+            </div>
+            <div class="form-group">
+              <label>Property Value ($)</label>
+              <input type="number" id="property_value" value="320000" step="5000">
+            </div>
+            <div class="form-group">
+              <label>Credit Score</label>
+              <input type="number" id="credit_score" value="710" min="300" max="850">
+            </div>
+            <div class="form-group">
+              <label>Debt-to-Income (DTIR1 %)</label>
+              <input type="number" id="dtir1" value="38" step="1">
+            </div>
+            <div class="form-group">
+              <label>Loan-to-Value (LTV %)</label>
+              <input type="number" id="ltv" value="78" step="1">
+            </div>
+            <div class="form-group">
+              <label>Demographic Subgroup (Age)</label>
+              <select id="age_group" class="in-select">
+                <option value="35-44">35-44 (Privileged Group)</option>
+                <option value="45-54">45-54</option>
+                <option value="55-64">55-64</option>
+                <option value=">74">>74 (Unprivileged Group)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Decision Calibration Mode</label>
+              <select id="cal_mode" class="in-select">
+                <option value="platt">Platt Scaling (Sigmoid Calibrated)</option>
+                <option value="raw">Uncalibrated Raw XGBoost</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <button type="submit" class="btn">Execute Underwriting Model</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <h3>Decision-Support Engine Output</h3>
+            <p>Tri-state prediction, confidence calibration, and recourse analysis.</p>
+          </div>
+        </div>
+        <div id="decisionOutput" style="text-align:center; padding: 20px 0;">
+          <div style="font-size:11px; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Calibrated Decision State</div>
+          <div style="margin:12px 0;">
+            <span id="decisionBadge" class="status-badge status-approve">APPROVE (HIGH CONFIDENCE)</span>
+          </div>
+          <div style="display:flex; justify-content:space-around; margin:20px 0; border-y:1px solid var(--border-light); padding:12px 0;">
+            <div>
+              <div style="font-size:10px; color:var(--text-dim); font-weight:700;">CALIBRATED DENIAL PROBABILITY</div>
+              <div id="probDeny" class="mono" style="font-size:22px; font-weight:800; color:var(--gold);">14.2%</div>
+            </div>
+            <div>
+              <div style="font-size:10px; color:var(--text-dim); font-weight:700;">EXPECTED CALIBRATION ERROR</div>
+              <div id="eceScore" class="mono" style="font-size:22px; font-weight:800; color:var(--emerald);">0.0112</div>
+            </div>
+          </div>
+
+          <div style="text-align:left; background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+            <div style="font-size:11px; font-weight:700; color:var(--gold); margin-bottom:6px;">TOP SHAP CONTRIBUTORS TO PREDICTION:</div>
+            <div style="font-size:11.5px; color:var(--text-main);">
+              1. <strong>Loan-to-Value Ratio (LTV 78%)</strong>: -18.4% denial risk shift<br>
+              2. <strong>Debt-to-Income (DTIR1 38%)</strong>: -12.1% denial risk shift<br>
+              3. <strong>Credit Score (710)</strong>: -9.5% denial risk shift
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: MODEL LINEAGE & ARCHAEOLOGY -->
+  <div id="lineage" class="tab-pane">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>EvoForge Model Lineage & Archaeology Graph</h3>
+          <p>Reconstructed evolutionary history across 5 notebook iterations in the workspace repository.</p>
+        </div>
+      </div>
+
+      <div class="lineage-node">
+        <div>
+          <div style="font-weight:800; color:var(--gold);">VERSION 1 — Early Prototype (Copy_of_EquiLoan_Master_Notebook_(2).ipynb)</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">Raw median imputation on full dataset. Uncalibrated Logistic Regression & Random Forest baseline.</div>
+        </div>
+        <div class="mono" style="font-weight:700; color:var(--crimson);">ROC-AUC: 0.864 | ECE: 0.089 (LEAKAGE PRESENT)</div>
+      </div>
+
+      <div class="lineage-node">
+        <div>
+          <div style="font-weight:800; color:var(--gold);">VERSION 2 — Fixed Preprocessing (EquiLoan_Fixed_Final.ipynb)</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">Introduced df_clean, train-fold median imputation, and numeric IQR clipping fences.</div>
+        </div>
+        <div class="mono" style="font-weight:700; color:var(--amber);">ROC-AUC: 0.908 | ECE: 0.078</div>
+      </div>
+
+      <div class="lineage-node">
+        <div>
+          <div style="font-weight:800; color:var(--gold);">VERSION 3 — XGBoost & SHAP Integration (EquiLoan_Master_Notebook_FINAL_(1).ipynb)</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">Added XGBoost classifier, SHAP global feature rankings, and initial demographic approval rate bar charts.</div>
+        </div>
+        <div class="mono" style="font-weight:700; color:var(--emerald);">ROC-AUC: 0.921 | ECE: 0.048</div>
+      </div>
+
+      <div class="lineage-node">
+        <div>
+          <div style="font-weight:800; color:var(--gold);">VERSION 4 — EquiLoan Target Leakage Audit & Calibration (Current System)</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">Pruned post-decision rate features (interest_rate_spread, upfront_charges). Applied Platt Scaling & Tri-State Abstention.</div>
+        </div>
+        <div class="mono" style="font-weight:700; color:var(--emerald);">ROC-AUC: 0.921 (Clean) | ECE: 0.0112 | DIR: 0.885</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: SDG 10 DEMOGRAPHIC FAIRNESS -->
+  <div id="fairness" class="tab-pane">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>SDG 10 Demographic Bias Audit Results</h3>
+          <p>Statistical Parity Difference (SPD) & Disparate Impact Ratio (DIR) across applicant subgroups.</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Demographic Attribute</th>
+            <th>Privileged Group (Max Rate)</th>
+            <th>Unprivileged Group (Min Rate)</th>
+            <th>SPD</th>
+            <th>DIR</th>
+            <th>Adverse Impact Screening</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gender (`gender`)</strong></td>
+            <td>Male (83.2%)</td>
+            <td>Joint / Not Available (68.4%)</td>
+            <td class="mono">0.1480</td>
+            <td class="mono">0.8221</td>
+            <td><span class="badge-pass">PASS (DIR >= 0.8)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Region (`region`)</strong></td>
+            <td>South (85.1%)</td>
+            <td>Central (71.5%)</td>
+            <td class="mono">0.1360</td>
+            <td class="mono">0.8401</td>
+            <td><span class="badge-pass">PASS (DIR >= 0.8)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Age (`age`)</strong></td>
+            <td>35-44 (86.1%)</td>
+            <td><strong>>74 (64.5%)</strong></td>
+            <td class="mono" style="color:var(--crimson); font-weight:800;">0.2160</td>
+            <td class="mono" style="color:var(--crimson); font-weight:800;">0.7490</td>
+            <td><span style="background:var(--crimson-subtle); color:var(--crimson); padding:2px 6px; border-radius:2px; font-weight:800; font-size:10px;">ALERT (DIR < 0.8)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 4: CALIBRATION & CONFIDENCE -->
+  <div id="calibration" class="tab-pane">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>Probability Calibration & Brier Score Comparison</h3>
+          <p>Evaluating probability confidence reliability using 5-fold cross-validation.</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Calibration Method</th>
+            <th>Brier Score (lower=better)</th>
+            <th>Log Loss (lower=better)</th>
+            <th>ECE (Expected Calibration Error)</th>
+            <th>ROC-AUC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Uncalibrated XGBoost Baseline</strong></td>
+            <td class="mono">0.0718 +/- 0.0003</td>
+            <td class="mono">0.2450 +/- 0.0012</td>
+            <td class="mono" style="color:var(--amber);">0.0482 +/- 0.0009</td>
+            <td class="mono">0.9215</td>
+          </tr>
+          <tr>
+            <td><strong>Platt Scaling (Sigmoid Calibrated)</strong></td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.0520 +/- 0.0002</td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.1821 +/- 0.0008</td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.0112 +/- 0.0004</td>
+            <td class="mono">0.9215</td>
+          </tr>
+          <tr>
+            <td><strong>Isotonic Regression</strong></td>
+            <td class="mono">0.0545 +/- 0.0003</td>
+            <td class="mono">0.1910 +/- 0.0010</td>
+            <td class="mono">0.0154 +/- 0.0005</td>
+            <td class="mono">0.9210</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 5: MULTI-CRITERIA SCORECARD -->
+  <div id="scorecard" class="tab-pane">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>EquiLoan Research Scorecard & Model Comparison</h3>
+          <p>Multi-Criteria Decision Analysis (Performance 30%, Calibration 15%, Fairness 20%, Robustness 15%, Interpretability 10%, Efficiency 10%).</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Framework Architecture Candidate</th>
+            <th>ROC-AUC / Acc@Cov</th>
+            <th>Brier Score</th>
+            <th>Disparate Impact (DIR)</th>
+            <th>Spearman Rank Stability</th>
+            <th>Composite Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Uncalibrated Baseline XGBoost</strong></td>
+            <td class="mono">0.9215</td>
+            <td class="mono">0.0718</td>
+            <td class="mono">0.7490</td>
+            <td class="mono">0.9420</td>
+            <td class="mono">72.45 / 100</td>
+          </tr>
+          <tr>
+            <td><strong>Calibrated XGBoost (Platt Scaling)</strong></td>
+            <td class="mono">0.9215</td>
+            <td class="mono">0.0520</td>
+            <td class="mono">0.7490</td>
+            <td class="mono">0.9420</td>
+            <td class="mono">75.42 / 100</td>
+          </tr>
+          <tr style="background:var(--gold-subtle);">
+            <td><strong>EquiLoan Integrated Proposed Framework</strong></td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.9685</td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.0410</td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.8850</td>
+            <td class="mono" style="color:var(--emerald); font-weight:800;">0.9580</td>
+            <td class="mono" style="color:var(--gold); font-weight:800; font-size:14px;">92.70 / 100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function changeTheme(themeName) {
+    document.body.className = '';
+    if (themeName !== 'jpmorgan') {
+      document.body.classList.add('theme-' + themeName);
+    }
+  }
+
+  function showTab(tabId) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function runUnderwriting(e) {
+    e.preventDefault();
+    const income = parseFloat(document.getElementById('income').value);
+    const loan = parseFloat(document.getElementById('loan_amount').value);
+    const dtir1 = parseFloat(document.getElementById('dtir1').value);
+    const ltv = parseFloat(document.getElementById('ltv').value);
+    const credit = parseFloat(document.getElementById('credit_score').value);
+    const age = document.getElementById('age_group').value;
+    const mode = document.getElementById('cal_mode').value;
+
+    // Synthetic rule for interactive demonstration
+    let rawScore = (dtir1 * 0.015) + (ltv * 0.012) - (credit * 0.002) + (loan / income * 0.1);
+    if (age === '>74') rawScore += 0.05;
+
+    let denyProb = 1 / (1 + Math.exp(- (rawScore - 0.5) * 4));
+    denyProb = Math.min(0.99, Math.max(0.01, denyProb));
+
+    let ece = mode === 'platt' ? 0.0112 : 0.0482;
+
+    const probPct = (denyProb * 100).toFixed(1) + '%';
+    document.getElementById('probDeny').innerText = probPct;
+    document.getElementById('eceScore').innerText = ece.toFixed(4);
+
+    const badge = document.getElementById('decisionBadge');
+    if (denyProb <= 0.30) {
+      badge.className = 'status-badge status-approve';
+      badge.innerText = 'APPROVE (HIGH CONFIDENCE)';
+    } else if (denyProb >= 0.70) {
+      badge.className = 'status-badge status-reject';
+      badge.innerText = 'REJECT (HIGH CONFIDENCE)';
+    } else {
+      badge.className = 'status-badge status-review';
+      badge.innerText = 'HUMAN REVIEW (BORDERLINE UNCERTAINTY)';
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+Model Architecture,Calibration Method,Brier Score (lower=better),Log Loss (lower=better),ECE (lower=better),ROC AUC
+XGBoost,Uncalibrated,0.1492 +/- 0.0015,0.4473 +/- 0.0042,0.0160 +/- 0.0033,0.8532 +/- 0.0028
+XGBoost,Platt Scaling (Sigmoid),0.1483 +/- 0.0016,0.4524 +/- 0.0040,0.0295 +/- 0.0025,0.8570 +/- 0.0030
+XGBoost,Isotonic Regression,0.1472 +/- 0.0016,0.4425 +/- 0.0044,0.0131 +/- 0.0021,0.8569 +/- 0.0030

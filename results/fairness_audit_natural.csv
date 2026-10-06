@@ -1,0 +1,4 @@
+Demographic Attribute,Privileged Group (Max Rate),Unprivileged Group (Min Rate),Statistical Parity Diff (SPD),Disparate Impact Ratio (DIR),Adverse Impact Screening
+gender,Joint (87.7%),Sex Not Available (82.0%),0.0564,0.9357,PASS (DIR >= 0.8)
+region,North (85.9%),North-East (81.0%),0.0493,0.9426,PASS (DIR >= 0.8)
+age,35-44 (86.2%),<25 (80.3%),0.0585,0.9321,PASS (DIR >= 0.8)

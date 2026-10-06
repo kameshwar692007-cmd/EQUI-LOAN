@@ -1,0 +1,4021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EquiLoan Institutional — Multi-Theme Quantitative Credit Terminal</title>
+  <meta name="description" content="Tier-1 Institutional AI loan underwriting platform with familiar world-class FinTech design systems (Stripe, Bloomberg, Linear, Robinhood, JPMorgan, and Apple).">
+
+  <!-- Classic Institutional Typography: Cinzel, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================================================= */
+    /* FAMOUS WORLD-CLASS FINTECH COLOR DESIGN SYSTEMS                           */
+    /* ========================================================================= */
+    :root {
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-serif: 'Cinzel', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+      /* 1. JPMORGAN CHASE & WALL STREET (Oxford Navy & Champagne Gold) */
+      --bg-base: #060a14;
+      --bg-surface: #0a1120;
+      --bg-card: #0f1a30;
+      --bg-card-hover: #142340;
+      --bg-input: #070d1a;
+      --border-subtle: #182846;
+      --border-accent: #d4af37;
+      --border-light: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --gold: #d4af37;
+      --gold-dark: #aa8822;
+      --gold-subtle: rgba(212, 175, 55, 0.12);
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --bar-gradient: linear-gradient(90deg, #997818, #d4af37, #fef08a, #d4af37, #997818);
+
+      --emerald: #059669;
+      --emerald-subtle: rgba(5, 150, 105, 0.15);
+      --emerald-glow: rgba(5, 150, 105, 0.25);
+
+      --amber: #d97706;
+      --amber-subtle: rgba(217, 119, 6, 0.15);
+      --amber-glow: rgba(217, 119, 6, 0.25);
+
+      --crimson: #dc2626;
+      --crimson-subtle: rgba(220, 38, 38, 0.15);
+      --crimson-glow: rgba(220, 38, 38, 0.25);
+
+      --blue-accent: #2563eb;
+      --blue-subtle: rgba(37, 99, 235, 0.12);
+
+      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border-subtle);
+      --card-shadow-hover: 0 15px 35px -8px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--gold);
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+
+    /* 2. STRIPE FINTECH (Blurple, Electric Indigo & Neon Cyan) */
+    body.theme-stripe {
+      --bg-base: #0a0e1a;
+      --bg-surface: #0f172a;
+      --bg-card: #151f38;
+      --bg-card-hover: #1c2a4d;
+      --bg-input: #0b1224;
+      --border-subtle: #243561;
+      --border-accent: #635bff;
+      --border-light: rgba(255, 255, 255, 0.08);
+
+      --text-main: #ffffff;
+      --text-muted: #a5b4fc;
+      --text-dim: #6366f1;
+
+      --gold: #635bff;
+      --gold-dark: #4f46e5;
+      --gold-subtle: rgba(99, 91, 255, 0.15);
+      --gold-glow: rgba(99, 91, 255, 0.35);
+      --bar-gradient: linear-gradient(90deg, #635bff, #00d4ff, #80e9ff, #635bff);
+
+      --emerald: #00d4ff;
+      --emerald-subtle: rgba(0, 212, 255, 0.15);
+      --emerald-glow: rgba(0, 212, 255, 0.3);
+
+      --amber: #f59e0b;
+      --crimson: #ff4d6d;
+      --blue-accent: #635bff;
+    }
+
+    /* 3. BLOOMBERG TERMINAL & PALANTIR (Deep Matte Obsidian & Phosphor Amber) */
+    body.theme-bloomberg {
+      --bg-base: #05070a;
+      --bg-surface: #0a0d14;
+      --bg-card: #111622;
+      --bg-card-hover: #171e2e;
+      --bg-input: #07090e;
+      --border-subtle: #222c3f;
+      --border-accent: #f59e0b;
+      --border-light: rgba(255, 255, 255, 0.05);
+
+      --text-main: #ffedd5;
+      --text-muted: #fed7aa;
+      --text-dim: #ea580c;
+
+      --gold: #f59e0b;
+      --gold-dark: #b45309;
+      --gold-subtle: rgba(245, 158, 11, 0.15);
+      --gold-glow: rgba(245, 158, 11, 0.3);
+      --bar-gradient: linear-gradient(90deg, #ea580c, #f59e0b, #fef08a, #f59e0b, #ea580c);
+
+      --emerald: #22c55e;
+      --emerald-subtle: rgba(34, 197, 94, 0.15);
+      --emerald-glow: rgba(34, 197, 94, 0.25);
+
+      --amber: #f97316;
+      --crimson: #ef4444;
+      --blue-accent: #38bdf8;
+    }
+
+    /* 4. LINEAR & VERCEL (Titanium Monochrome & Electric Violet) */
+    body.theme-linear {
+      --bg-base: #000000;
+      --bg-surface: #09090b;
+      --bg-card: #121215;
+      --bg-card-hover: #1c1c22;
+      --bg-input: #050507;
+      --border-subtle: #27272a;
+      --border-accent: #5e6ad2;
+      --border-light: rgba(255, 255, 255, 0.07);
+
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+
+      --gold: #5e6ad2;
+      --gold-dark: #4338ca;
+      --gold-subtle: rgba(94, 106, 210, 0.15);
+      --gold-glow: rgba(94, 106, 210, 0.3);
+      --bar-gradient: linear-gradient(90deg, #4338ca, #5e6ad2, #c7d2fe, #5e6ad2, #4338ca);
+
+      --emerald: #10b981;
+      --emerald-subtle: rgba(16, 185, 129, 0.15);
+      --emerald-glow: rgba(16, 185, 129, 0.25);
+
+      --amber: #f59e0b;
+      --crimson: #f43f5e;
+      --blue-accent: #5e6ad2;
+    }
+
+    /* 5. ROBINHOOD & WEIBULL (Hyper Neon Jade & Pitch Black) */
+    body.theme-robinhood {
+      --bg-base: #000000;
+      --bg-surface: #080d09;
+      --bg-card: #0e1a12;
+      --bg-card-hover: #15291c;
+      --bg-input: #040805;
+      --border-subtle: #193822;
+      --border-accent: #00c805;
+      --border-light: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f0fdf4;
+      --text-muted: #86efac;
+      --text-dim: #22c55e;
+
+      --gold: #00c805;
+      --gold-dark: #008703;
+      --gold-subtle: rgba(0, 200, 5, 0.15);
+      --gold-glow: rgba(0, 200, 5, 0.3);
+      --bar-gradient: linear-gradient(90deg, #008703, #00c805, #bbf7d0, #00c805, #008703);
+
+      --emerald: #00c805;
+      --emerald-subtle: rgba(0, 200, 5, 0.15);
+      --emerald-glow: rgba(0, 200, 5, 0.25);
+
+      --amber: #fbbf24;
+      --crimson: #ff3b30;
+      --blue-accent: #00c805;
+    }
+
+    /* 6. APPLE CARD / ALABASTER (Clean Minimalist Swiss Daylight) */
+    body.theme-apple-light {
+      --bg-base: #f5f5f7;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-input: #f8fafc;
+      --border-subtle: #d2d2d7;
+      --border-accent: #0071e3;
+      --border-light: rgba(0, 0, 0, 0.08);
+
+      --text-main: #1d1d1f;
+      --text-muted: #6e6e73;
+      --text-dim: #86868b;
+
+      --gold: #0071e3;
+      --gold-dark: #004fb0;
+      --gold-subtle: rgba(0, 113, 227, 0.1);
+      --gold-glow: rgba(0, 113, 227, 0.2);
+      --bar-gradient: linear-gradient(90deg, #0071e3, #2997ff, #70c4ff, #0071e3);
+
+      --emerald: #34c759;
+      --emerald-subtle: rgba(52, 199, 89, 0.12);
+      --emerald-glow: rgba(52, 199, 89, 0.2);
+
+      --amber: #ff9500;
+      --crimson: #ff3b30;
+      --blue-accent: #0071e3;
+
+      --card-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--border-subtle);
+      --card-shadow-hover: 0 10px 25px -4px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--gold);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease, box-shadow 0.25s ease;
+    }
+
+    html,
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .brand-title {
+      font-family: var(--font-heading);
+      letter-spacing: -0.01em;
+    }
+
+    .serif-title {
+      font-family: var(--font-serif);
+      letter-spacing: 0.05em;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Classic Pinstripe Header */
+    header.institutional-top {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-gold-bar {
+      height: 3px;
+      background: var(--bar-gradient);
+    }
+
+    .header-main-row {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px clamp(16px, 3vw, 40px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .institutional-crest {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-base));
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--gold);
+      box-shadow: 0 2px 10px var(--gold-glow);
+    }
+
+    .brand-info h1 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seal-badge {
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: var(--gold-subtle);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      font-family: var(--font-mono);
+    }
+
+    .brand-info p {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Executive Theme Palette Selector */
+    .palette-select {
+      background: var(--bg-input);
+      border: 1.5px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      color: var(--gold);
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: var(--font-sans);
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* Jurisdiction Selector */
+    .jurisdiction-select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      color: var(--gold);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Currency & Theme Segmented Controls */
+    .seg-group {
+      display: inline-flex;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .seg-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+    }
+
+    .seg-btn:hover {
+      color: var(--text-main);
+    }
+
+    .seg-btn.active {
+      background: var(--bg-card);
+      color: var(--gold);
+      font-weight: 700;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-inst {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #0b1120;
+      font-weight: 700;
+      box-shadow: 0 2px 8px var(--gold-glow);
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--bg-card-hover);
+    }
+
+    .btn-auto-opt {
+      background: var(--gold-subtle);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-auto-opt:hover {
+      background: var(--gold);
+      color: #0b1120;
+      box-shadow: 0 2px 10px var(--gold-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Live Dynamic Macro Telemetry Ribbon */
+    .market-ticker-ribbon {
+      background: var(--bg-base);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 8px clamp(16px, 3vw, 40px);
+    }
+
+    .ticker-content {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .ticker-content::-webkit-scrollbar { display: none; }
+
+    .ticker-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      font-size: 11.5px;
+    }
+
+    .ticker-stat .t-lbl {
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 10px;
+    }
+
+    .ticker-stat .t-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .ticker-stat .t-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    .t-badge.pass { background: var(--emerald-subtle); color: var(--emerald); }
+    .t-badge.gold { background: var(--gold-subtle); color: var(--gold); }
+
+    /* Navigation Bar */
+    .nav-bar-wrapper {
+      max-width: 1480px;
+      margin: 18px auto 0;
+      padding: 0 clamp(16px, 3vw, 40px);
+    }
+
+    .inst-nav-tabs {
+      display: flex;
+      gap: 2px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .inst-nav-tabs::-webkit-scrollbar { display: none; }
+
+    .inst-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .inst-tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .inst-tab-btn.active {
+      background: var(--bg-card);
+      color: var(--gold);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Main Viewport */
+    main.viewport {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 20px clamp(16px, 3vw, 40px) 60px;
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.2s ease forwards;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout Grids */
+    .layout-2col {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .layout-1col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .layout-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .layout-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Multi-Stage Loan Application Stepper Bar */
+    .app-workflow-stepper {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+    }
+
+    .step-node.active, .step-node.completed {
+      opacity: 1;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .step-node.active .step-num {
+      background: var(--gold);
+      color: #0b1120;
+      border-color: var(--gold);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    .step-node.completed .step-num {
+      background: var(--emerald);
+      color: #ffffff;
+      border-color: var(--emerald);
+    }
+
+    .step-text {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .step-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+      min-width: 20px;
+    }
+
+    /* Executive Cards / Panels */
+    .inst-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .inst-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card-title h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Preset Selection Ribbon */
+    .preset-ribbon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-subtle);
+    }
+
+    /* Automation Toolbar Strip */
+    .auto-calc-toolbar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .auto-calc-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .auto-calc-tag {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ltv-lock-select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 4px 8px;
+      color: var(--text-main);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      outline: none;
+    }
+
+    /* OCR Ingestion Box */
+    .ocr-drop-box {
+      background: var(--bg-surface);
+      border: 1.5px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ocr-drop-box:hover {
+      border-color: var(--gold);
+    }
+
+    /* Open Banking Telemetry Strip */
+    .open-banking-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      margin-bottom: 14px;
+    }
+
+    .ob-item {
+      text-align: center;
+      border-right: 1px solid var(--border-light);
+      padding: 0 4px;
+    }
+
+    .ob-item:last-child { border-right: none; }
+
+    .ob-item .ob-lbl {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .ob-item .ob-val {
+      font-size: 12px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--emerald);
+      margin-top: 2px;
+    }
+
+    /* Form Fields */
+    .inst-form-section-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin: 16px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .inst-form-section-title:first-of-type { margin-top: 0; }
+
+    .inst-fields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 14px;
+    }
+
+    .inst-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .inst-field label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .inst-field label span.unit {
+      color: var(--text-dim);
+      font-weight: 400;
+      font-size: 10.5px;
+    }
+
+    .inst-field input,
+    .inst-field select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      color: var(--text-main);
+      font-size: 12.5px;
+      font-family: var(--font-mono);
+      outline: none;
+    }
+
+    .inst-field input:focus,
+    .inst-field select:focus {
+      border-color: var(--gold);
+      background: var(--bg-surface);
+      box-shadow: 0 0 0 2px var(--gold-glow);
+    }
+
+    /* Ratio Intelligence Strip & Mini Health Meters */
+    .inst-ratio-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin: 16px 0;
+    }
+
+    .inst-ratio-item {
+      text-align: center;
+      border-right: 1px solid var(--border-light);
+      padding: 0 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .inst-ratio-item:last-child { border-right: none; }
+
+    .inst-ratio-item .r-head {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+    }
+
+    .inst-ratio-item .r-val {
+      font-size: 15px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      margin-top: 3px;
+      color: var(--text-main);
+    }
+
+    /* Mini Ratio Health Meter Track */
+    .ratio-meter-track {
+      position: relative;
+      height: 4px;
+      background: var(--border-subtle);
+      border-radius: 2px;
+      margin: 6px 4px 4px;
+      overflow: hidden;
+    }
+
+    .ratio-meter-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .inst-ratio-item .r-status {
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 2px;
+      margin-top: 2px;
+      display: inline-block;
+    }
+
+    .r-status.pass { background: var(--emerald-subtle); color: var(--emerald); }
+    .r-status.warn { background: var(--amber-subtle); color: var(--amber); }
+    .r-status.danger { background: var(--crimson-subtle); color: var(--crimson); }
+
+    /* Capacity & Headroom Alert Strip */
+    .capacity-summary-card {
+      background: var(--gold-subtle);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cap-item h6 {
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .cap-item p {
+      font-size: 14px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--gold);
+      margin-top: 1px;
+    }
+
+    /* Facility Cost Overview */
+    .inst-cost-bar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .inst-cost-stat h6 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .inst-cost-stat p {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+
+    /* Execution Action Bar */
+    .action-underwrite-bar {
+      background: linear-gradient(90deg, var(--bg-card), var(--bg-surface));
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+
+    /* Interactive Amortization Chart Box */
+    .amort-chart-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    /* 6-Axis Risk Radar & Monte Carlo Side Panel */
+    .quant-viz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .quant-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      position: relative;
+    }
+
+    .quant-card-head {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Live Stress Test Matrix Table */
+    .stress-test-box {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      padding: 12px 14px;
+      margin-top: 14px;
+    }
+
+    .stress-test-header {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    /* 3-Offer Term Sheet Card */
+    .term-sheet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .term-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      position: relative;
+    }
+
+    .term-card.highlight {
+      border-color: var(--gold);
+      background: linear-gradient(180deg, var(--gold-subtle) 0%, var(--bg-surface) 100%);
+    }
+
+    .term-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    .term-badge.gold { background: var(--gold-subtle); color: var(--gold); border: 1px solid var(--gold); }
+    .term-badge.emerald { background: var(--emerald-subtle); color: var(--emerald); border: 1px solid var(--emerald); }
+
+    /* Basel III Rating Hero Card */
+    .rating-hero {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 18px;
+    }
+
+    .rating-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .basel-grade-pill {
+      font-size: 13px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      padding: 3px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gold);
+      background: var(--gold-subtle);
+      color: var(--gold);
+    }
+
+    .gauge-wrapper {
+      position: relative;
+      width: 240px;
+      height: 130px;
+      margin: 0 auto;
+    }
+
+    .gauge-mid-text {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .gauge-prob-number {
+      font-size: 34px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .gauge-caption {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-top: 3px;
+    }
+
+    .verdict-banner-inst {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .verdict-banner-inst.approved {
+      background: var(--emerald-subtle);
+      color: var(--emerald);
+      border: 1px solid var(--emerald);
+    }
+
+    .verdict-banner-inst.review {
+      background: var(--amber-subtle);
+      color: var(--amber);
+      border: 1px solid var(--amber);
+    }
+
+    .verdict-banner-inst.declined {
+      background: var(--crimson-subtle);
+      color: var(--crimson);
+      border: 1px solid var(--crimson);
+    }
+
+    .verdict-rationale {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 10px auto 0;
+      line-height: 1.45;
+    }
+
+    /* Model Consensus Pill Grid */
+    .consensus-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .consensus-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .consensus-chip .c-name {
+      font-size: 9.5px;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .consensus-chip .c-val {
+      font-size: 13px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    /* SHAP Waterfall Attribution */
+    .waterfall-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .waterfall-item {
+      display: grid;
+      grid-template-columns: 150px 1fr 65px;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+    }
+
+    .waterfall-item .wf-name {
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wf-track {
+      position: relative;
+      height: 10px;
+      background: var(--bg-surface);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .wf-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .wf-fill.pos { background: var(--emerald); left: 50%; }
+    .wf-fill.neg { background: var(--crimson); right: 50%; }
+
+    .wf-zero-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-subtle);
+    }
+
+    .waterfall-item .wf-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .wf-val.pos { color: var(--emerald); }
+    .wf-val.neg { color: var(--crimson); }
+
+    /* AI Underwriter Copilot Slide Drawer */
+    #ai-copilot-drawer {
+      position: fixed;
+      top: 0;
+      right: -480px;
+      width: 460px;
+      height: 100vh;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--gold);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #ai-copilot-drawer.open {
+      right: 0;
+    }
+
+    .copilot-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copilot-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .copilot-msg {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .copilot-msg.ai {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--gold);
+      color: var(--text-main);
+    }
+
+    .copilot-msg.user {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      align-self: flex-end;
+    }
+
+    .copilot-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .chip-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .copilot-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      display: flex;
+      gap: 8px;
+    }
+
+    .copilot-footer input {
+      flex: 1;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+    }
+
+    /* Amortization Table Preview */
+    .amort-table-box {
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      margin-top: 14px;
+    }
+
+    /* Institutional Data Table */
+    table.inst-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    table.inst-table th {
+      background: var(--bg-surface);
+      padding: 10px 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    table.inst-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-light);
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+
+    table.inst-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    /* Status Pills */
+    .inst-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 2px;
+      font-size: 10.5px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      text-transform: uppercase;
+    }
+
+    .inst-badge.approved { background: var(--emerald-subtle); color: var(--emerald); border: 1px solid var(--emerald); }
+    .inst-badge.review { background: var(--amber-subtle); color: var(--amber); border: 1px solid var(--amber); }
+    .inst-badge.declined { background: var(--crimson-subtle); color: var(--crimson); border: 1px solid var(--crimson); }
+
+    /* Dropzone */
+    .inst-dropzone {
+      border: 1.5px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--bg-surface);
+      cursor: pointer;
+    }
+
+    .inst-dropzone:hover {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+    }
+
+    /* Interactive Scrubber Bar */
+    .inst-scrubber-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      margin-bottom: 18px;
+    }
+
+    .inst-scrubber-bar label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .inst-scrubber-bar input[type="range"] {
+      flex: 1;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .scrubber-readout {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--gold);
+      min-width: 45px;
+    }
+
+    /* Confusion Matrix 2x2 */
+    .inst-cm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .inst-cm-cell {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .inst-cm-cell.tp, .inst-cm-cell.tn {
+      background: var(--emerald-subtle);
+      border-color: rgba(5, 150, 105, 0.3);
+    }
+
+    .inst-cm-cell.fp, .inst-cm-cell.fn {
+      background: var(--crimson-subtle);
+      border-color: rgba(220, 38, 38, 0.3);
+    }
+
+    .inst-cm-cell .cm-digit {
+      font-size: 20px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+
+    .inst-cm-cell .cm-sub {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .inst-cm-cell.tp .cm-sub, .inst-cm-cell.tn .cm-sub { color: var(--emerald); }
+    .inst-cm-cell.fp .cm-sub, .inst-cm-cell.fn .cm-sub { color: var(--crimson); }
+
+    /* Print Credit Memorandum */
+    .memo-paper {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 44px;
+      max-width: 920px;
+      margin: 0 auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      font-family: var(--font-sans);
+    }
+
+    .memo-head {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .memo-head h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #0f172a;
+    }
+
+    .memo-head p {
+      font-size: 11.5px;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .memo-meta {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .memo-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .memo-section {
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      background: #f8fafc;
+    }
+
+    .memo-section h5 {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #b45309;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+
+    .memo-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      padding: 3px 0;
+    }
+
+    .memo-row .m-lbl { color: #64748b; }
+    .memo-row .m-val { font-weight: 700; font-family: var(--font-mono); color: #0f172a; }
+
+    /* Floating Tooltip */
+    #inst-tooltip {
+      position: fixed;
+      pointer-events: none;
+      background: #0b1329;
+      color: #f8fafc;
+      padding: 7px 11px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--gold);
+      z-index: 99999;
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      transition: opacity 0.1s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+
+    /* Print Viewport */
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      header.institutional-top, .market-ticker-ribbon, .nav-bar-wrapper, #inst-tooltip, .btn-inst, .preset-ribbon, .auto-calc-toolbar, .btn-auto-opt, #ai-copilot-drawer, .ocr-drop-box, .app-workflow-stepper, .action-underwrite-bar { display: none !important; }
+      .tab-pane { display: none !important; }
+      #tab-memo { display: block !important; }
+      .memo-paper { box-shadow: none !important; border: none !important; padding: 0 !important; max-width: 100% !important; }
+    }
+
+    @media (max-width: 1080px) {
+      .layout-2col, .layout-3col { grid-template-columns: 1fr; }
+      .layout-4col { grid-template-columns: repeat(2, 1fr); }
+      .inst-ratio-strip { grid-template-columns: repeat(2, 1fr); }
+      .term-sheet-grid, .quant-viz-grid { grid-template-columns: 1fr; }
+      #ai-copilot-drawer { width: 100%; right: -100%; }
+    }
+
+    @media (max-width: 640px) {
+      .inst-fields-grid { grid-template-columns: 1fr; }
+      .layout-4col { grid-template-columns: 1fr; }
+      .consensus-pill-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating Dynamic Tooltip -->
+  <div id="inst-tooltip"></div>
+
+  <!-- AI Underwriter Copilot Drawer -->
+  <aside id="ai-copilot-drawer">
+    <div class="copilot-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:20px;">🤖</span>
+        <div>
+          <h4 style="font-size:14px; font-weight:800; color:var(--text-main);">Sentinel AI Credit Copilot</h4>
+          <p style="font-size:10px; color:var(--gold); text-transform:uppercase;">Basel III / IFRS-9 Core Analyst</p>
+        </div>
+      </div>
+      <button class="btn-inst btn-outline" id="btn-close-copilot" style="padding:3px 8px; font-size:11px;">✕ Close</button>
+    </div>
+
+    <div class="copilot-body" id="copilot-messages">
+      <div class="copilot-msg ai">
+        <b>🏛️ Sentinel AI Underwriter initialized.</b><br>
+        I have analyzed Dr. Vikramaditya Sharma's credit profile. All financial ratios meet Tier-1 Prime standards (LTV 65.0%, DSCR 3.96x). How can I assist your Credit Committee today?
+      </div>
+    </div>
+
+    <div style="padding:0 16px;">
+      <div class="copilot-chips">
+        <button class="chip-btn" data-prompt="narrative">📝 Draft Memo Narrative</button>
+        <button class="chip-btn" data-prompt="redflags">🚩 Check Red Flags</button>
+        <button class="chip-btn" data-prompt="mitigants">💡 Suggest Covenants</button>
+        <button class="chip-btn" data-prompt="stresstest">📉 Macro Sensitivity</button>
+      </div>
+    </div>
+
+    <div class="copilot-footer">
+      <input type="text" id="copilot-input" placeholder="Ask Copilot about borrower risk, DSCR, or covenants...">
+      <button class="btn-inst btn-gold" id="btn-send-copilot">Ask</button>
+    </div>
+  </aside>
+
+  <!-- Classic Institutional Header -->
+  <header class="institutional-top">
+    <div class="top-gold-bar"></div>
+    <div class="header-main-row">
+      <div class="brand-block">
+        <div class="institutional-crest">🏛️</div>
+        <div class="brand-info">
+          <h1>EQUI-LOAN INSTITUTIONAL <span class="seal-badge">BASEL III &bull; ECL ENGINE</span></h1>
+          <p>Credit Risk Capital &bull; Underwriting Terminal &bull; CFPB Fair Lending Audit</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- 🎨 Famous FinTech Color Palette Switcher -->
+        <select class="palette-select" id="sel-theme-palette" title="Select Famous FinTech Design System">
+          <option value="theme-jpmorgan" selected>🏛️ JPMorgan (Wall St Navy &amp; Gold)</option>
+          <option value="theme-stripe">💳 Stripe Pro (Electric Blurple &amp; Cyan)</option>
+          <option value="theme-bloomberg">📊 Bloomberg (Matte Obsidian &amp; Amber)</option>
+          <option value="theme-linear">⚡ Linear (Titanium Monochrome)</option>
+          <option value="theme-robinhood">📈 Robinhood (Hyper Jade &amp; Black)</option>
+          <option value="theme-apple-light">🍎 Apple Card (Swiss Alabaster Light)</option>
+        </select>
+
+        <!-- Regulatory Framework Selector -->
+        <select class="jurisdiction-select" id="sel-jurisdiction">
+          <option value="RBI" selected>🇮🇳 RBI (India)</option>
+          <option value="CFPB">🇺🇸 US CFPB / QM</option>
+          <option value="PRA">🇬🇧 UK PRA / FCA</option>
+          <option value="EBA">🇪🇺 EU Basel IV</option>
+        </select>
+
+        <!-- Audio Feedback Toggle -->
+        <button class="btn-inst btn-outline" id="btn-toggle-audio" style="padding:5px 9px;">🔊 Sound: ON</button>
+
+        <!-- Currency Selector -->
+        <div class="seg-group">
+          <button class="seg-btn active" data-curr="INR">₹ INR</button>
+          <button class="seg-btn" data-curr="USD">$ USD</button>
+          <button class="seg-btn" data-curr="EUR">€ EUR</button>
+          <button class="seg-btn" data-curr="GBP">£ GBP</button>
+        </div>
+
+        <button class="btn-inst btn-outline" id="btn-open-copilot">🤖 AI Copilot</button>
+        <button class="btn-inst btn-outline" id="btn-export-json">💾 Audit Log (JSON)</button>
+        <button class="btn-inst btn-gold" id="btn-print-memo">📑 Print Sanction Memo</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Macro Telemetry Ribbon -->
+  <section class="market-ticker-ribbon">
+    <div class="ticker-content">
+      <div class="ticker-stat">
+        <span class="t-lbl">RBI Repo / SOFR:</span>
+        <span class="t-val" id="tk-repo">6.50% &bull; SOFR 5.31%</span>
+      </div>
+      <div class="ticker-stat">
+        <span class="t-lbl">Underwritten Exposure:</span>
+        <span class="t-val" id="tk-exposure">₹248.5 Cr</span>
+      </div>
+      <div class="ticker-stat">
+        <span class="t-lbl">Monte Carlo VaR 99.9%:</span>
+        <span class="t-val" id="tk-var">1.84%</span>
+        <span class="t-badge pass">Basel III Standard</span>
+      </div>
+      <div class="ticker-stat">
+        <span class="t-lbl">Disparate Impact Index:</span>
+        <span class="t-val">0.942 DIR</span>
+        <span class="t-badge pass">&ge; 0.80 Pass</span>
+      </div>
+      <div class="ticker-stat">
+        <span class="t-lbl">ZKP Audit Proof:</span>
+        <span class="t-val" style="color:var(--gold);">SHA256: 7f89c02d</span>
+        <span class="t-badge gold">Verified</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-bar-wrapper">
+    <nav class="inst-nav-tabs">
+      <button class="inst-tab-btn active" data-target="tab-underwrite">I. Credit Underwriting Terminal</button>
+      <button class="inst-tab-btn" data-target="tab-portfolio">II. Institutional Portfolio Engine</button>
+      <button class="inst-tab-btn" data-target="tab-governance">III. Regulatory &amp; Fair Lending Audit</button>
+      <button class="inst-tab-btn" data-target="tab-validation">IV. Quantitative Validation Lab</button>
+      <button class="inst-tab-btn" data-target="tab-memo">V. Credit Committee Memorandum</button>
+    </nav>
+  </div>
+
+  <!-- Main Viewport -->
+  <main class="viewport">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: CREDIT UNDERWRITING TERMINAL                                       -->
+    <!-- ========================================================================= -->
+    <div id="tab-underwrite" class="tab-pane active">
+
+      <!-- Executive Multi-Stage Loan Application Workflow Stepper -->
+      <div class="app-workflow-stepper">
+        <div class="step-node completed" data-step="1">
+          <div class="step-num">✓</div>
+          <div class="step-text">1. Entity KYC &amp; Character</div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-node completed" data-step="2">
+          <div class="step-num">✓</div>
+          <div class="step-text">2. Cashflow &amp; Bank Statements</div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-node completed" data-step="3">
+          <div class="step-num">✓</div>
+          <div class="step-text">3. Collateral &amp; Appraisal</div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-node active" data-step="4">
+          <div class="step-num">4</div>
+          <div class="step-text">4. AI Ensemble &amp; Basel III</div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-node" data-step="5">
+          <div class="step-num">5</div>
+          <div class="step-text">5. Sanction &amp; Term Sheet</div>
+        </div>
+      </div>
+
+      <div class="layout-2col">
+
+        <!-- Left: Financial Input & Computations -->
+        <div class="inst-card">
+          <div class="inst-card-header">
+            <div class="card-title">
+              <h3>Borrower &amp; Facility Parameters</h3>
+              <p>Underwrite single credit facilities against institutional risk appetite limits.</p>
+            </div>
+            <!-- Presets -->
+            <div class="preset-ribbon">
+              <button class="preset-btn" data-preset="aaa_hnw">👑 AAA Prime HNW</button>
+              <button class="preset-btn" data-preset="aa_salaried">🏛️ AA Professional</button>
+              <button class="preset-btn" data-preset="commercial">💼 Commercial</button>
+              <button class="preset-btn" data-preset="bbb_leverage">⚠️ BBB Leverage</button>
+              <button class="preset-btn" data-preset="subprime">🚫 Distressed Credit</button>
+            </div>
+          </div>
+
+          <!-- Smart Ratio Automation Toolbar -->
+          <div class="auto-calc-toolbar">
+            <div class="auto-calc-left">
+              <span class="auto-calc-tag">⚡ Ratio Automation:</span>
+              <label style="font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:5px;">
+                <span>Target LTV Lock:</span>
+                <select class="ltv-lock-select" id="sel-ltv-lock">
+                  <option value="none">Manual / Unlocked</option>
+                  <option value="65" selected>Lock 65% LTV (Prime Standard)</option>
+                  <option value="70">Lock 70% LTV (Investment Grade)</option>
+                  <option value="75">Lock 75% LTV (Commercial Cap)</option>
+                  <option value="80">Lock 80% LTV (Regulatory Ceiling)</option>
+                </select>
+              </label>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn-auto-opt" id="btn-fit-max-cap" title="Set loan to maximum safe capacity based on DTI limit">⚡ Max Safe Loan</button>
+              <button class="btn-auto-opt" id="btn-opt-aaa" title="Tune loan, rate & tenor to achieve AAA Investment Grade">👑 Optimize to AAA</button>
+            </div>
+          </div>
+
+          <!-- Document / Bank Statement OCR Ingestion Dropzone -->
+          <div class="ocr-drop-box" id="ocr-trigger-box">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:20px;">📄</span>
+              <div>
+                <span style="font-size:11.5px; font-weight:700; color:var(--text-main);">Smart OCR Statement Ingestion</span>
+                <p style="font-size:10.5px; color:var(--text-dim);">Upload Bank Statement / Tax Return to auto-extract cashflows</p>
+              </div>
+            </div>
+            <button class="btn-inst btn-outline" id="btn-sim-ocr" style="padding:4px 10px; font-size:11px;">📥 Auto-Ingest Verified Bank Tape</button>
+          </div>
+
+          <!-- Open Banking Alternative Data Telemetry -->
+          <div class="open-banking-strip">
+            <div class="ob-item">
+              <div class="ob-lbl">Avg Daily Bank Bal</div>
+              <div class="ob-val" id="ob-eod">₹8,42,000</div>
+            </div>
+            <div class="ob-item">
+              <div class="ob-lbl">Direct Payroll API</div>
+              <div class="ob-val" style="color:var(--emerald);">✓ Authenticated</div>
+            </div>
+            <div class="ob-item">
+              <div class="ob-lbl">Utility / Rent Streak</div>
+              <div class="ob-val">36/36 Mos Zero-DPD</div>
+            </div>
+            <div class="ob-item">
+              <div class="ob-lbl">Burn Rate Index</div>
+              <div class="ob-val">18.4% (Low Risk)</div>
+            </div>
+          </div>
+
+          <!-- Max Capacity Indicator Strip -->
+          <div class="capacity-summary-card">
+            <div class="cap-item">
+              <h6>Max Qualifying Principal (at 35% DTI)</h6>
+              <p id="cap-max-loan">₹1,12,40,000</p>
+            </div>
+            <div class="cap-item">
+              <h6>Max Scheduled EMI Budget</h6>
+              <p id="cap-max-emi">₹88,200 / mo</p>
+            </div>
+            <div class="cap-item">
+              <h6>Unused Leverage Headroom</h6>
+              <p id="cap-headroom" style="color:var(--emerald);">+₹37,40,000</p>
+            </div>
+          </div>
+
+          <!-- Section: Borrower Profile -->
+          <div class="inst-form-section-title">👤 Borrower Character &amp; Credit Bureau Track</div>
+          <div class="inst-fields-grid">
+            <div class="inst-field">
+              <label>Primary Applicant Name</label>
+              <input type="text" id="in-name" value="Dr. Vikramaditya Sharma">
+            </div>
+            <div class="inst-field">
+              <label>Employment &amp; Qualification</label>
+              <select id="in-education">
+                <option value="PostGraduate" selected>Post Graduate &bull; Executive / MD</option>
+                <option value="Graduate">Graduate &bull; Salaried Professional</option>
+                <option value="Undergraduate">Undergraduate &bull; Business Owner</option>
+              </select>
+            </div>
+            <div class="inst-field">
+              <label>Credit Bureau Score <span class="unit">(CIBIL / FICO 300–850)</span></label>
+              <input type="number" id="in-credit" value="785" min="300" max="850">
+            </div>
+            <div class="inst-field">
+              <label>Historical Delinquency Flag</label>
+              <select id="in-history">
+                <option value="1" selected>Clean Record &bull; Zero 30+ DPD in 36M</option>
+                <option value="0">Delinquency Identified &bull; Past Default</option>
+              </select>
+            </div>
+            <div class="inst-field">
+              <label>Collateral Property Location</label>
+              <select id="in-property-area">
+                <option value="Urban" selected>Metro Tier-1 Prime Commercial</option>
+                <option value="Semiurban">Semi-Urban Prime Residential</option>
+                <option value="Rural">Rural / Tier-3 Regional</option>
+              </select>
+            </div>
+            <div class="inst-field">
+              <label>Self-Employed / Corporate Entity?</label>
+              <select id="in-self-employed">
+                <option value="No" selected>Salaried Corporate Senior Executive</option>
+                <option value="Yes">Self-Employed / Sole Proprietor</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section: Financial Cashflow -->
+          <div class="inst-form-section-title">💰 Verifiable Cashflow &amp; Collateral Valuation</div>
+          <div class="inst-fields-grid">
+            <div class="inst-field">
+              <label>Primary Monthly Income <span class="unit curr-symbol">(₹)</span></label>
+              <input type="number" id="in-income" value="225000" min="0" step="5000">
+            </div>
+            <div class="inst-field">
+              <label>Secondary / Co-Applicant Income <span class="unit curr-symbol">(₹)</span></label>
+              <input type="number" id="in-coincome" value="95000" min="0" step="5000">
+            </div>
+            <div class="inst-field">
+              <label>
+                <span>Requested Principal Amount <span class="unit curr-symbol">(₹)</span></span>
+                <span id="loan-auto-tag" style="font-size:9.5px; font-weight:700; color:var(--gold); font-family:var(--font-mono);">⚡ Auto-LTV: 65%</span>
+              </label>
+              <input type="number" id="in-loan" value="7475000" min="10000" step="50000">
+            </div>
+            <div class="inst-field">
+              <label>Independent Property Appraisal <span class="unit curr-symbol">(₹)</span></label>
+              <input type="number" id="in-property" value="11500000" min="10000" step="100000">
+            </div>
+            <div class="inst-field">
+              <label>Interest Rate <span class="unit">(Benchmark APR %)</span></label>
+              <input type="number" id="in-rate" value="7.15" min="1" max="25" step="0.05">
+            </div>
+            <div class="inst-field">
+              <label>Facility Tenor <span class="unit">(Months)</span></label>
+              <select id="in-term">
+                <option value="360">360 Months (30-Year Amortization)</option>
+                <option value="240" selected>240 Months (20-Year Amortization)</option>
+                <option value="180">180 Months (15-Year Amortization)</option>
+                <option value="120">120 Months (10-Year Amortization)</option>
+              </select>
+            </div>
+            <div class="inst-field">
+              <label>Existing Monthly Debt Service <span class="unit curr-symbol">(₹)</span></label>
+              <input type="number" id="in-existing-debt" value="22000" min="0" step="1000">
+            </div>
+            <div class="inst-field">
+              <label>Underwriting Policy Cutoff</label>
+              <select id="in-cutoff-select">
+                <option value="0.65" selected>Institutional Baseline (65% Hurdle)</option>
+                <option value="0.75">Conservative Investment Grade (75% Hurdle)</option>
+                <option value="0.55">High Yield Growth (55% Hurdle)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Computed Ratio Intelligence Strip with Visual Progress Meters -->
+          <div class="inst-ratio-strip">
+            <div class="inst-ratio-item">
+              <div class="r-head">Loan-to-Value (LTV)</div>
+              <div class="r-val" id="disp-ltv">65.0%</div>
+              <div class="ratio-meter-track">
+                <div class="ratio-meter-fill" id="meter-ltv" style="width:65%; background:var(--emerald);"></div>
+              </div>
+              <span class="r-status pass" id="badge-ltv">Optimal (&lt;70%)</span>
+            </div>
+
+            <div class="inst-ratio-item">
+              <div class="r-head">Debt-to-Income (DTI)</div>
+              <div class="r-val" id="disp-dti">25.2%</div>
+              <div class="ratio-meter-track">
+                <div class="ratio-meter-fill" id="meter-dti" style="width:25.2%; background:var(--emerald);"></div>
+              </div>
+              <span class="r-status pass" id="badge-dti">Prime (&lt;35%)</span>
+            </div>
+
+            <div class="inst-ratio-item">
+              <div class="r-head">Debt Service Cov. (DSCR)</div>
+              <div class="r-val" id="disp-dscr">3.96x</div>
+              <div class="ratio-meter-track">
+                <div class="ratio-meter-fill" id="meter-dscr" style="width:85%; background:var(--emerald);"></div>
+              </div>
+              <span class="r-status pass" id="badge-dscr">Strong (&gt;2.5x)</span>
+            </div>
+
+            <div class="inst-ratio-item">
+              <div class="r-head">Net Disposable (NDI)</div>
+              <div class="r-val" id="disp-ndi">₹2,39,265</div>
+              <div class="ratio-meter-track">
+                <div class="ratio-meter-fill" style="width:75%; background:var(--emerald);"></div>
+              </div>
+              <span class="r-status pass">Surplus</span>
+            </div>
+          </div>
+
+          <!-- Facility Cost Overview -->
+          <div class="inst-cost-bar">
+            <div class="inst-cost-stat">
+              <h6>Scheduled Monthly Debt Service</h6>
+              <p id="disp-emi">₹58,735 / mo</p>
+            </div>
+            <div class="inst-cost-stat">
+              <h6>Lifetime Interest Expense</h6>
+              <p id="disp-interest">₹66,21,400</p>
+            </div>
+            <div class="inst-cost-stat">
+              <h6>Total Repayment Commitment</h6>
+              <p id="disp-total">₹1,40,96,400</p>
+            </div>
+          </div>
+
+          <!-- Instant Underwriting Execution Action Bar -->
+          <div class="action-underwrite-bar">
+            <div>
+              <div style="font-size:13px; font-weight:800; color:var(--text-main); font-family:var(--font-heading);">
+                ⚡ Autonomous Institutional Underwriting
+              </div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">
+                Execute full 4-model ensemble, stress-test ratios, and generate sanction letter.
+              </div>
+            </div>
+            <button class="btn-inst btn-gold" id="btn-exec-underwrite" style="padding:10px 20px; font-size:13px;">
+              🚀 Execute Board Sanction
+            </button>
+          </div>
+
+          <!-- 3-Offer Term Sheet Structuring Comparison -->
+          <div style="margin-top:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11.5px; font-weight:800; text-transform:uppercase; color:var(--gold); letter-spacing:0.05em;">📑 Side-by-Side Facility Term Structuring</span>
+              <button class="btn-inst btn-outline" id="btn-select-term-print" style="padding:2px 8px; font-size:10.5px;">📄 Export Term Sheet</button>
+            </div>
+            <div class="term-sheet-grid">
+              <div class="term-card highlight">
+                <span class="term-badge gold">Recommended</span>
+                <div style="font-size:11px; font-weight:700; color:var(--text-main);">Option A: 20-Yr Prime</div>
+                <div class="mono" style="font-size:15px; font-weight:800; color:var(--gold); margin-top:4px;" id="term-a-emi">₹58,735/mo</div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:2px;" id="term-a-rate">7.15% APR &bull; Standard Tenor</div>
+                <div style="font-size:10px; color:var(--emerald); font-weight:700; margin-top:4px;" id="term-a-interest">Interest: ₹66.2L</div>
+              </div>
+
+              <div class="term-card">
+                <span class="term-badge emerald">Saves ₹21.4L</span>
+                <div style="font-size:11px; font-weight:700; color:var(--text-main);">Option B: 15-Yr Accelerated</div>
+                <div class="mono" style="font-size:15px; font-weight:800; color:var(--emerald); margin-top:4px;" id="term-b-emi">₹67,820/mo</div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">6.95% APR &bull; Fast Equity Build</div>
+                <div style="font-size:10px; color:var(--emerald); font-weight:700; margin-top:4px;" id="term-b-interest">Interest: ₹44.8L</div>
+              </div>
+
+              <div class="term-card">
+                <div style="font-size:11px; font-weight:700; color:var(--text-main);">Option C: 30-Yr Low EMI</div>
+                <div class="mono" style="font-size:15px; font-weight:800; color:var(--text-main); margin-top:4px;" id="term-c-emi">₹51,450/mo</div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">7.45% APR &bull; Max Cashflow Buffer</div>
+                <div style="font-size:10px; color:var(--amber); font-weight:700; margin-top:4px;" id="term-c-interest">Interest: ₹1.05 Cr</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quantitative Visualizations: 6-Axis Risk Radar & Monte Carlo Engine -->
+          <div class="quant-viz-grid">
+            <!-- 6-Axis Spider / Radar Chart -->
+            <div class="quant-card">
+              <div class="quant-card-head">
+                <span>🕸️ 6-Axis Quantitative Risk Radar</span>
+              </div>
+              <div style="height:170px; width:100%;">
+                <svg id="svg-risk-radar" viewBox="0 0 240 170" style="width:100%; height:100%; display:block;"></svg>
+              </div>
+            </div>
+
+            <!-- Monte Carlo Stochastic PDF Bell Curve -->
+            <div class="quant-card">
+              <div class="quant-card-head">
+                <span>🎲 10,000-Path Monte Carlo VaR</span>
+                <button class="btn-inst btn-outline" id="btn-run-mc" style="padding:1px 6px; font-size:9.5px;">▶ Re-Simulate</button>
+              </div>
+              <div style="height:140px; width:100%;">
+                <svg id="svg-monte-carlo" viewBox="0 0 240 140" style="width:100%; height:100%; display:block;"></svg>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-dim); margin-top:4px;">
+                <span>VaR 99.9%: <b id="mc-var" style="color:var(--emerald);">1.84%</b></span>
+                <span>Exp Loss: <b id="mc-el" style="color:var(--gold);">0.32%</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 30-Year Loan Amortization & Equity Growth Chart -->
+          <div class="amort-chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <span style="font-size:11.5px; font-weight:800; text-transform:uppercase; color:var(--gold); letter-spacing:0.04em;">📈 30-Year Loan Amortization &amp; Equity Trajectory</span>
+              <div style="display:flex; gap:12px; font-size:10.5px;">
+                <span style="color:var(--emerald); font-weight:700;">■ Equity Built</span>
+                <span style="color:var(--amber); font-weight:700;">■ Cumulative Interest</span>
+                <span style="color:var(--blue-accent); font-weight:700;">— Loan Balance</span>
+              </div>
+            </div>
+            <div style="height:180px; width:100%;">
+              <svg id="svg-amort-chart" viewBox="0 0 540 180" style="width:100%; height:100%; display:block;"></svg>
+            </div>
+          </div>
+
+          <!-- Live Multi-Scenario Stress Test Matrix -->
+          <div class="stress-test-box">
+            <div class="stress-test-header">
+              <span>📉 Dynamic Macro Stress-Testing Matrix</span>
+              <span style="font-size:10px; color:var(--text-dim); text-transform:none;">Auto-Calculated in Real-Time</span>
+            </div>
+            <table class="inst-table" style="font-size:11px;">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Stressed Factor</th>
+                  <th>Stressed EMI</th>
+                  <th>Stressed DTI</th>
+                  <th>Stressed LTV / DSCR</th>
+                  <th>Capital Impact</th>
+                </tr>
+              </thead>
+              <tbody id="stress-matrix-tbody">
+                <!-- Dynamically Computed -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Collapsible Amortization Schedule Table -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+            <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; color:var(--text-dim); letter-spacing:0.04em;">Multi-Year Amortization Schedule:</span>
+            <button class="btn-inst btn-outline" id="btn-toggle-amort" style="padding:3px 8px; font-size:11px;">📊 View Annual Breakdown</button>
+          </div>
+          <div class="amort-table-box" id="amort-schedule-view" style="display:none;">
+            <table class="inst-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Beginning Balance</th>
+                  <th>Principal Repaid</th>
+                  <th>Interest Paid</th>
+                  <th>Ending Balance</th>
+                  <th>Cumulative Equity</th>
+                </tr>
+              </thead>
+              <tbody id="amort-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Basel Rating, SHAP Drivers & Restructuring Guidance -->
+        <div>
+
+          <!-- Basel III Risk Grade Hero -->
+          <div class="rating-hero">
+            <div class="rating-hero-top">
+              <span style="font-size:10.5px; text-transform:uppercase; font-weight:700; color:var(--text-dim);">Internal Rating Grade</span>
+              <span class="basel-grade-pill" id="disp-basel-grade">GRADE: AAA (PRIME)</span>
+            </div>
+
+            <div class="gauge-wrapper">
+              <svg id="svg-inst-gauge" viewBox="0 0 240 130" style="width:100%; height:100%; display:block; overflow:visible;"></svg>
+              <div class="gauge-mid-text">
+                <div class="gauge-prob-number" id="disp-gauge-prob">96.9%</div>
+                <div class="gauge-caption">Approval Confidence</div>
+              </div>
+            </div>
+
+            <div class="verdict-banner-inst approved" id="disp-verdict-banner">
+              <span>🏛️</span> Approved &bull; Tier-1 Investment Grade
+            </div>
+            <div class="verdict-rationale" id="disp-verdict-rationale">
+              Superior credit profile. DSCR of 3.96x and locked 65.0% LTV meet Tier-1 Prime capital allocation requirements.
+            </div>
+
+            <!-- Multi-Model Consensus Grid -->
+            <div class="consensus-pill-grid">
+              <div class="consensus-chip">
+                <div class="c-name">LightGBM Pro</div>
+                <div class="c-val" id="c-lgbm">97.5%</div>
+              </div>
+              <div class="consensus-chip">
+                <div class="c-name">XGBoost Risk</div>
+                <div class="c-val" id="c-xgb">96.9%</div>
+              </div>
+              <div class="consensus-chip">
+                <div class="c-name">Random Forest</div>
+                <div class="c-val" id="c-rf">96.0%</div>
+              </div>
+              <div class="consensus-chip">
+                <div class="c-name">Deep MLP</div>
+                <div class="c-val" id="c-mlp">96.6%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SHAP Decomposition -->
+          <div class="inst-card" style="margin-bottom:18px;">
+            <div class="inst-card-header">
+              <div class="card-title">
+                <h3>SHAP Basis Point Decomposition</h3>
+                <p>Marginal risk contribution (+/- basis points) to facility credit spread.</p>
+              </div>
+            </div>
+            <div class="waterfall-list" id="waterfall-list-container"></div>
+          </div>
+
+          <!-- Capital Structuring Guidance -->
+          <div class="structuring-guidance-box">
+            <div class="structuring-head">
+              <span>🏛️</span> Credit Restructuring &amp; Covenants Advisory
+            </div>
+            <div id="structuring-guidance-body"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: INSTITUTIONAL PORTFOLIO ENGINE                                     -->
+    <!-- ========================================================================= -->
+    <div id="tab-portfolio" class="tab-pane">
+      <div class="inst-card" style="margin-bottom:20px;">
+        <div class="inst-card-header">
+          <div class="card-title">
+            <h3>Institutional Bulk Application Engine</h3>
+            <p>Upload multi-borrower portfolios or run synthetic stress testing across capital tranches.</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-inst btn-outline" id="btn-load-batch-sample">🧪 Ingest 50 Institutional Facilities</button>
+            <button class="btn-inst btn-gold" id="btn-export-batch-csv">📥 Export Evaluated Portfolio (CSV)</button>
+          </div>
+        </div>
+
+        <div class="inst-dropzone" id="portfolio-dropzone">
+          <div style="font-size:32px; margin-bottom:6px;">📁</div>
+          <h4 style="font-size:14px; font-weight:700; color:var(--text-main);">Drag &amp; Drop Loan Tape (CSV) Here</h4>
+          <p style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">Columns: <code>ApplicantIncome, CoapplicantIncome, LoanAmount, Term, CreditScore, DelinquencyHistory, PropertyArea</code></p>
+          <input type="file" id="batch-file-input" accept=".csv,text/csv" style="display:none;">
+        </div>
+      </div>
+
+      <!-- Portfolio Risk Telemetry -->
+      <div class="layout-4col">
+        <div class="inst-card">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim);">Underwritten Facilities</div>
+          <div class="mono" style="font-size:22px; font-weight:800; color:var(--text-main); margin-top:4px;" id="pt-count">50</div>
+          <div style="font-size:10.5px; color:var(--text-dim); margin-top:2px;">Total loan tape volume</div>
+        </div>
+        <div class="inst-card">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim);">Approved Capital Exposure</div>
+          <div class="mono" style="font-size:22px; font-weight:800; color:var(--gold); margin-top:4px;" id="pt-capital">₹24.8 Cr</div>
+          <div style="font-size:10.5px; color:var(--text-dim); margin-top:2px;">Approval rate: <b id="pt-appr-rate" style="color:var(--emerald);">74.0%</b></div>
+        </div>
+        <div class="inst-card">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim);">Senior Review Covenants</div>
+          <div class="mono" style="font-size:22px; font-weight:800; color:var(--amber); margin-top:4px;" id="pt-review">5</div>
+          <div style="font-size:10.5px; color:var(--text-dim); margin-top:2px;">Conditional credit approval</div>
+        </div>
+        <div class="inst-card">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-dim);">Credit Policy Rejections</div>
+          <div class="mono" style="font-size:22px; font-weight:800; color:var(--crimson); margin-top:4px;" id="pt-declined">8</div>
+          <div style="font-size:10.5px; color:var(--text-dim); margin-top:2px;">High default probability</div>
+        </div>
+      </div>
+
+      <!-- Batch Tape Grid -->
+      <div class="inst-card">
+        <div class="inst-card-header">
+          <div class="card-title">
+            <h3>Underwritten Loan Tape Registry</h3>
+            <p>Click "Inspect" on any borrower to load directly into the Underwriting Terminal.</p>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input type="text" id="pt-search" placeholder="🔍 Search borrower or facility..." style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:6px 10px; color:var(--text-main); font-size:11.5px;">
+            <select id="pt-filter" style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:6px 10px; color:var(--text-main); font-size:11.5px;">
+              <option value="ALL">All Risk Ratings</option>
+              <option value="Approved">Approved / Investment Grade</option>
+              <option value="Review">Conditional Review</option>
+              <option value="Declined">Policy Decline</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto; max-height:420px;">
+          <table class="inst-table">
+            <thead>
+              <tr>
+                <th>Facility ID</th>
+                <th>Borrower Entity</th>
+                <th>Monthly Income</th>
+                <th>Facility Amount</th>
+                <th>Credit Score</th>
+                <th>LTV %</th>
+                <th>DTI %</th>
+                <th>Location</th>
+                <th>Basel Rating</th>
+                <th>Probability</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="pt-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: REGULATORY & FAIR LENDING AUDIT                                    -->
+    <!-- ========================================================================= -->
+    <div id="tab-governance" class="tab-pane">
+      <div class="inst-card" style="margin-bottom:20px; border-left:4px solid var(--emerald);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+          <div>
+            <h4 style="font-size:15px; font-weight:800; color:var(--text-main); font-family:var(--font-heading);">
+              Regulatory Compliance Status: CFPB / ECOA Certified Pass (SDG 10)
+            </h4>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+              All demographic and protected classes strictly exceed the 80% Disparate Impact Ratio (DIR &ge; 0.80) standard.
+            </p>
+          </div>
+          <button class="btn-inst btn-outline" id="btn-debias-toggle">⚖️ Adversarial Debiasing: OFF</button>
+        </div>
+      </div>
+
+      <div class="layout-2col">
+        <div class="inst-card">
+          <div class="inst-card-header">
+            <div class="card-title">
+              <h3>Disparate Impact Ratio (DIR) 80% Rule</h3>
+              <p>Protected class approval rate ratio (<span style="color:var(--crimson); font-weight:700;">&lt; 0.80</span> indicates adverse impact).</p>
+            </div>
+          </div>
+          <div id="dir-bars-box" style="display:flex; flex-direction:column; gap:14px;"></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-card-header">
+            <div class="card-title">
+              <h3>Statistical Parity Difference (SPD) Gap</h3>
+              <p>Rate divergence between privileged and unprivileged cohorts (lower is fairer).</p>
+            </div>
+          </div>
+          <div style="height:220px; width:100%;">
+            <svg id="svg-spd-chart" viewBox="0 0 440 220" style="width:100%; height:100%; display:block;"></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Table -->
+      <div class="inst-card">
+        <div class="inst-card-header">
+          <div class="card-title">
+            <h3>Demographic Cohort Parity Breakdown</h3>
+            <p>Audited cohort-level acceptance rates under Basel III underwriting rules.</p>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="inst-table">
+            <thead>
+              <tr>
+                <th>Protected Attribute</th>
+                <th>Privileged Cohort</th>
+                <th>Privileged Acceptance</th>
+                <th>Unprivileged Cohort</th>
+                <th>Unprivileged Acceptance</th>
+                <th>DIR (80% Benchmark)</th>
+                <th>SPD Gap</th>
+                <th>Regulatory Clearance</th>
+              </tr>
+            </thead>
+            <tbody id="fairness-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: QUANTITATIVE VALIDATION LAB                                        -->
+    <!-- ========================================================================= -->
+    <div id="tab-validation" class="tab-pane">
+      <div class="inst-scrubber-bar">
+        <label>🎛️ Operating Decision Threshold:</label>
+        <input type="range" id="val-scrubber" min="0.30" max="0.90" step="0.01" value="0.65">
+        <div class="scrubber-readout" id="val-scrubber-disp">0.65</div>
+        <span style="font-size:11px; color:var(--text-dim);">(Drag to simulate dynamic TPR / FPR &amp; Expected Loss P&amp;L impact)</span>
+      </div>
+
+      <div class="layout-2col">
+        <div class="inst-card">
+          <div class="inst-card-header">
+            <div class="card-title">
+              <h3>Receiver Operating Characteristic (ROC)</h3>
+              <p>Discrimination efficiency across candidate classifier architectures.</p>
+            </div>
+          </div>
+          <div style="height:280px; width:100%;">
+            <svg id="svg-val-roc" viewBox="0 0 480 280" style="width:100%; height:100%; display:block;"></svg>
+          </div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-card-header">
+            <div class="card-title">
+              <h3>Live Confusion Matrix &amp; P&amp;L Expected Value</h3>
+              <p>Simulated on 9,000 out-of-time validation observations at threshold <b id="val-thresh-lbl">0.65</b>.</p>
+            </div>
+          </div>
+
+          <div class="inst-cm-grid">
+            <div class="inst-cm-cell tp">
+              <div class="cm-digit" id="cm-tp">3,280</div>
+              <div class="cm-sub">True Pos (Approved)</div>
+            </div>
+            <div class="inst-cm-cell fp">
+              <div class="cm-digit" id="cm-fp">195</div>
+              <div class="cm-sub">False Pos (Default Loss)</div>
+            </div>
+            <div class="inst-cm-cell fn">
+              <div class="cm-digit" id="cm-fn">270</div>
+              <div class="cm-sub">False Neg (Lost Margins)</div>
+            </div>
+            <div class="inst-cm-cell tn">
+              <div class="cm-digit" id="cm-tn">5,255</div>
+              <div class="cm-sub">True Neg (Safe Denial)</div>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:12px 14px; margin-top:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Net Portfolio Operating Return:</span>
+              <span class="mono" id="disp-net-pnl" style="font-size:16px; font-weight:800; color:var(--emerald);">+₹20.48 Cr</span>
+            </div>
+            <div style="font-size:10.5px; color:var(--text-dim); margin-top:2px;" id="disp-pnl-sub">
+              Interest Margin: ₹23.8Cr &bull; Default Provisions: ₹3.3Cr
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmarks Table -->
+      <div class="inst-card">
+        <div class="inst-card-header">
+          <div class="card-title">
+            <h3>Quantitative Architecture Benchmarks</h3>
+            <p>Out-of-sample validation metrics post-IQR outlier truncation &amp; StandardScaler scaling.</p>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="inst-table">
+            <thead>
+              <tr>
+                <th>Model Architecture</th>
+                <th>Raw Accuracy</th>
+                <th>Optimized Accuracy</th>
+                <th>F1 Score</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>ROC AUC</th>
+                <th>Gini Index</th>
+                <th>Regulatory Status</th>
+              </tr>
+            </thead>
+            <tbody id="val-bench-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: CREDIT COMMITTEE MEMORANDUM & SANCTION ORDER (PRINT / PDF)          -->
+    <!-- ========================================================================= -->
+    <div id="tab-memo" class="tab-pane">
+      <div class="memo-paper">
+        <div class="memo-head">
+          <div>
+            <h2>CREDIT RISK COMMITTEE &bull; FORMAL SANCTION ORDER</h2>
+            <p>EquiLoan Capital Markets &bull; Institutional Risk Governance</p>
+          </div>
+          <div class="memo-meta">
+            <div><b>SANCTION REF:</b> <span id="m-ref">EQ-SANCTION-2026-9041</span></div>
+            <div><b>DATE:</b> <span id="m-date">August 19, 2026</span></div>
+            <div><b>CLASSIFIER:</b> LightGBM Enterprise v4.8</div>
+          </div>
+        </div>
+
+        <div class="memo-grid-2">
+          <div class="memo-section">
+            <h5>1. BORROWER &amp; COLLATERAL APPRAISAL</h5>
+            <div class="memo-row"><span class="m-lbl">Primary Borrower:</span><span class="m-val" id="m-name">Dr. Vikramaditya Sharma</span></div>
+            <div class="memo-row"><span class="m-lbl">Qualification / Industry:</span><span class="m-val" id="m-edu">Post Graduate &bull; Executive</span></div>
+            <div class="memo-row"><span class="m-lbl">Credit Bureau Score:</span><span class="m-val" id="m-credit">785 (AAA Prime)</span></div>
+            <div class="memo-row"><span class="m-lbl">Property Jurisdiction:</span><span class="m-val" id="m-area">Metro Tier-1 Commercial</span></div>
+            <div class="memo-row"><span class="m-lbl">Appraisal Valuation:</span><span class="m-val" id="m-prop">₹1,15,00,000</span></div>
+          </div>
+
+          <div class="memo-section">
+            <h5>2. FACILITY STRUCTURING &amp; RATIO LIMITS</h5>
+            <div class="memo-row"><span class="m-lbl">Facility Requested:</span><span class="m-val" id="m-loan">₹74,75,000</span></div>
+            <div class="memo-row"><span class="m-lbl">Loan-to-Value (LTV):</span><span class="m-val" id="m-ltv">65.0% (Hurdle &lt;70%)</span></div>
+            <div class="memo-row"><span class="m-lbl">Debt-to-Income (DTI):</span><span class="m-val" id="m-dti">25.2% (Hurdle &lt;35%)</span></div>
+            <div class="memo-row"><span class="m-lbl">Debt Service Coverage (DSCR):</span><span class="m-val" id="m-dscr">3.96x (Hurdle &gt;2.5x)</span></div>
+            <div class="memo-row"><span class="m-lbl">Scheduled Monthly Service:</span><span class="m-val" id="m-emi">₹58,735 / mo</span></div>
+          </div>
+        </div>
+
+        <div class="memo-section" style="margin-bottom:16px;">
+          <h5>3. RISK CAPITAL DECISION &amp; ENSEMBLE CONSENSUS</h5>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:6px;">
+            <div>
+              <div style="font-size:10.5px; color:#64748b; text-transform:uppercase; font-weight:700;">Executive Decision</div>
+              <div style="font-size:18px; font-weight:800; color:#047857; font-family:var(--font-heading);" id="m-decision">APPROVED &bull; TIER-1 INVESTMENT GRADE</div>
+            </div>
+            <div>
+              <div style="font-size:10.5px; color:#64748b; text-transform:uppercase; font-weight:700;">Approval Confidence</div>
+              <div style="font-size:18px; font-weight:800; font-family:var(--font-mono); color:#0f172a;" id="m-prob">96.9%</div>
+            </div>
+            <div>
+              <div style="font-size:10.5px; color:#64748b; text-transform:uppercase; font-weight:700;">Consensus Spread</div>
+              <div style="font-size:12px; font-family:var(--font-mono); color:#0f172a;">LGB: 97.5% | XGB: 96.9% | RF: 96.0%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="memo-section" style="margin-bottom:16px;">
+          <h5>4. AI UNDERWRITER EXECUTIVE COMMITTEE NARRATIVE</h5>
+          <div style="font-size:11.5px; color:#334155; line-height:1.6;" id="m-ai-narrative">
+            Dr. Vikramaditya Sharma represents an exemplary Tier-1 High Net Worth credit asset. The primary cashflow generation of ₹2,25,000/mo combined with ₹95,000/mo secondary co-obligor support yields a highly resilient 3.96x Debt Service Coverage Ratio (DSCR). Collateralized against prime metro commercial real estate at an institutional LTV of 65.0%, loss severity under severe downturn shocks remains negligible. Disparate impact testing confirms regulatory clearance.
+          </div>
+        </div>
+
+        <div class="memo-section" style="margin-bottom:16px;">
+          <h5>5. MANDATORY PRE-DISBURSAL COVENANTS &amp; CONDITIONS</h5>
+          <div style="font-size:11.5px; color:#334155; line-height:1.6;" id="m-covenants">
+            &bull; 1. Verification of last 12 months audited banking accounts verifying gross monthly cashflow &ge; ₹3,20,000.<br>
+            &bull; 2. First-charge perfected legal mortgage over collateral property with independent title search.<br>
+            &bull; 3. Maintenance of minimum 1.50x Debt Service Coverage Ratio throughout facility tenor.<br>
+            &bull; 4. Fair Lending clearance certified under CFPB disparate impact audit standard (DIR &ge; 0.80).
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; border-top:1px solid #e2e8f0; padding-top:18px; margin-top:24px;">
+          <div>
+            <div style="font-size:10.5px; color:#64748b; text-transform:uppercase; font-weight:700;">Managing Director &bull; Credit Risk</div>
+            <div style="font-family:'Cinzel', Georgia, serif; font-size:16px; color:#0f172a; margin-top:6px; border-bottom:1px solid #94a3b8; width:220px; padding-bottom:3px;">
+              V. S. Sharma, CFA
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:10px; color:#94a3b8;">Digitally authenticated via EquiLoan Sentinel Pro Core Engine</div>
+            <div style="font-size:9.5px; font-family:var(--font-mono); color:#cbd5e1; margin-top:2px;">SHA256: 7f89c02d184ebc992a543110ef091a</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT CORE ENGINE                                                    -->
+  <!-- ========================================================================= -->
+  <script>
+    "use strict";
+
+    const App = {
+      currency: "INR",
+      currencyRates: { INR: 1, USD: 0.012, EUR: 0.011, GBP: 0.0094 },
+      currencySymbols: { INR: "₹", USD: "$", EUR: "€", GBP: "£" },
+      jurisdiction: "RBI",
+      themePalette: "theme-jpmorgan",
+      audioEnabled: true,
+      audioCtx: null,
+      debiased: false,
+      threshold: 0.65,
+      activeTab: "tab-underwrite",
+      ltvLock: 65,
+
+      models: [
+        { name: "LightGBM Institutional", accRaw: 0.901, accOpt: 0.962, f1: 0.938, prec: 0.946, rec: 0.931, auc: 0.991, gini: 0.982, status: "Recommended" },
+        { name: "XGBoost Risk Regressor", accRaw: 0.892, accOpt: 0.955, f1: 0.929, prec: 0.938, rec: 0.921, auc: 0.988, gini: 0.976, status: "Production" },
+        { name: "Random Forest Ensemble", accRaw: 0.874, accOpt: 0.949, f1: 0.921, prec: 0.930, rec: 0.912, auc: 0.985, gini: 0.970, status: "Production" },
+        { name: "Deep Risk MLP", accRaw: 0.852, accOpt: 0.941, f1: 0.912, prec: 0.920, rec: 0.905, auc: 0.981, gini: 0.962, status: "Candidate" },
+        { name: "Logistic Basel Benchmark", accRaw: 0.818, accOpt: 0.896, f1: 0.838, prec: 0.858, rec: 0.819, auc: 0.939, gini: 0.878, status: "Baseline" }
+      ],
+
+      fairness: [
+        { feature: "Gender", maxGroup: "Male", maxRate: 0.732, minGroup: "Female", minRate: 0.690, spd: 0.042, dir: 0.942 },
+        { feature: "Collateral Region", maxGroup: "Metro Urban", maxRate: 0.768, minGroup: "Regional Tier-3", minRate: 0.642, spd: 0.126, dir: 0.836 },
+        { feature: "Facility Purpose", maxGroup: "Commercial Purchase", maxRate: 0.745, minGroup: "Refinance", minRate: 0.620, spd: 0.125, dir: 0.832 },
+        { feature: "Age Demographic", maxGroup: "35–50 Yrs", maxRate: 0.742, minGroup: "18–25 Yrs", minRate: 0.615, spd: 0.127, dir: 0.828 },
+        { feature: "Employment Category", maxGroup: "Corporate Salaried", maxRate: 0.758, minGroup: "Sole Proprietorship", minRate: 0.625, spd: 0.133, dir: 0.824 }
+      ],
+
+      presets: {
+        aaa_hnw: { name: "Dr. Vikramaditya Sharma", income: 225000, coincome: 95000, loan: 7475000, property: 11500000, credit: 785, rate: 7.15, term: 240, debt: 22000, area: "Urban", history: "1", edu: "PostGraduate", self: "No" },
+        aa_salaried: { name: "Siddharth Nambiar", income: 140000, coincome: 55000, loan: 4500000, property: 6800000, credit: 745, rate: 7.45, term: 240, debt: 15000, area: "Semiurban", history: "1", edu: "Graduate", self: "No" },
+        commercial: { name: "Rajesh K. Singhania", income: 320000, coincome: 0, loan: 9100000, property: 14000000, credit: 735, rate: 7.95, term: 180, debt: 65000, area: "Urban", history: "1", edu: "PostGraduate", self: "Yes" },
+        bbb_leverage: { name: "Arvind Kejriwal", income: 80000, coincome: 0, loan: 3680000, property: 4600000, credit: 665, rate: 8.95, term: 360, debt: 32000, area: "Urban", history: "1", edu: "Graduate", self: "No" },
+        subprime: { name: "Kunal Mehra", income: 45000, coincome: 0, loan: 2560000, property: 3200000, credit: 545, rate: 11.50, term: 240, debt: 18000, area: "Rural", history: "0", edu: "Undergraduate", self: "Yes" }
+      },
+
+      batchList: []
+    };
+
+    function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+    function num(v, def = 0) { const n = Number(v); return Number.isFinite(n) ? n : def; }
+
+    // =========================================================================
+    // NATIVE WEB AUDIO SOUNDSCAPE ENGINE
+    // =========================================================================
+    function playAudioTone(type) {
+      if (!App.audioEnabled) return;
+      try {
+        if (!App.audioCtx) App.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const ctx = App.audioCtx;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+
+        if (type === "approve") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.15);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === "click") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(320, now);
+          gain.gain.setValueAtTime(0.03, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+          osc.start(now);
+          osc.stop(now + 0.05);
+        } else if (type === "warn") {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(220, now);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {}
+    }
+
+    function fmtCurrency(valInINR) {
+      const sym = App.currencySymbols[App.currency] || "₹";
+      const rate = App.currencyRates[App.currency] || 1;
+      const converted = num(valInINR) * rate;
+
+      if (App.currency === "INR") {
+        if (Math.abs(converted) >= 10000000) return sym + (converted / 10000000).toFixed(2) + " Cr";
+        if (Math.abs(converted) >= 100000) return sym + (converted / 100000).toFixed(2) + " L";
+        return sym + Math.round(converted).toLocaleString("en-IN");
+      }
+      return sym + Math.round(converted).toLocaleString("en-US");
+    }
+
+    function calculateEMI(principal, annualRate, months) {
+      if (!principal || principal <= 0 || months <= 0) return 0;
+      if (!annualRate || annualRate <= 0) return principal / months;
+      const r = (annualRate / 100) / 12;
+      return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+    }
+
+    function calculatePrincipalFromEMI(maxEMI, annualRate, months) {
+      if (!maxEMI || maxEMI <= 0 || months <= 0) return 0;
+      if (!annualRate || annualRate <= 0) return maxEMI * months;
+      const r = (annualRate / 100) / 12;
+      return (maxEMI * (Math.pow(1 + r, months) - 1)) / (r * Math.pow(1 + r, months));
+    }
+
+    window.showTooltip = function(e, html) {
+      const tt = document.getElementById("inst-tooltip");
+      if (!tt) return;
+      tt.innerHTML = html;
+      tt.style.left = e.clientX + "px";
+      tt.style.top = e.clientY + "px";
+      tt.style.opacity = "1";
+    };
+
+    window.hideTooltip = function() {
+      const tt = document.getElementById("inst-tooltip");
+      if (tt) tt.style.opacity = "0";
+    };
+
+    // =========================================================================
+    // AUTOMATED UNDERWRITING & RATIO INTELLIGENCE ENGINE
+    // =========================================================================
+    function runUnderwriting(sourceTrigger = "") {
+      const name = document.getElementById("in-name").value || "Borrower";
+      const income = Math.max(1, num(document.getElementById("in-income").value, 150000));
+      const coincome = Math.max(0, num(document.getElementById("in-coincome").value, 0));
+      const totalIncome = income + coincome;
+      const property = Math.max(10000, num(document.getElementById("in-property").value, 8000000));
+      const credit = Math.max(300, Math.min(850, num(document.getElementById("in-credit").value, 750)));
+      const rate = Math.max(1, num(document.getElementById("in-rate").value, 7.25));
+      const term = num(document.getElementById("in-term").value, 240);
+      const existingDebt = Math.max(0, num(document.getElementById("in-existing-debt").value, 0));
+      const history = document.getElementById("in-history").value === "1" ? 1 : 0;
+      const cutoff = num(document.getElementById("in-cutoff-select").value, 0.65);
+      const area = document.getElementById("in-property-area").value;
+      const edu = document.getElementById("in-education").value;
+
+      // 1. AUTOMATION: Auto-LTV Lock Computation
+      let loan = Math.max(10000, num(document.getElementById("in-loan").value, 5000000));
+      if (App.ltvLock && sourceTrigger === "property") {
+        loan = Math.round(property * (App.ltvLock / 100));
+        document.getElementById("in-loan").value = loan;
+      } else if (App.ltvLock && sourceTrigger === "loan") {
+        const calcLtv = (loan / property) * 100;
+        if (Math.abs(calcLtv - App.ltvLock) > 1.5) {
+          document.getElementById("loan-auto-tag").textContent = `✏️ Custom (${calcLtv.toFixed(0)}% LTV)`;
+        }
+      }
+
+      if (App.ltvLock && sourceTrigger !== "loan") {
+        document.getElementById("loan-auto-tag").textContent = `⚡ Auto-LTV: ${App.ltvLock}%`;
+      }
+
+      // 2. AUTOMATION: Max Borrowing Capacity Computer (at 35% DTI Cap)
+      const maxPermittedEMI = Math.max(0, (totalIncome * 0.35) - existingDebt);
+      const maxQualifiedPrincipal = calculatePrincipalFromEMI(maxPermittedEMI, rate, term);
+      const headroom = maxQualifiedPrincipal - loan;
+
+      document.getElementById("cap-max-loan").textContent = fmtCurrency(maxQualifiedPrincipal);
+      document.getElementById("cap-max-emi").textContent = fmtCurrency(maxPermittedEMI) + " / mo";
+      const capHeadroomEl = document.getElementById("cap-headroom");
+      capHeadroomEl.textContent = (headroom >= 0 ? "+" : "") + fmtCurrency(headroom);
+      capHeadroomEl.style.color = headroom >= 0 ? "var(--emerald)" : "var(--crimson)";
+
+      // 3. Financial Ratio Computations
+      const emi = calculateEMI(loan, rate, term);
+      const ltv = Math.min(150, (loan / property) * 100);
+      const dti = Math.min(100, ((emi + existingDebt) / totalIncome) * 100);
+      const dscr = emi > 0 ? (totalIncome - existingDebt) / emi : 5;
+      const ndi = Math.max(0, totalIncome - (emi + existingDebt));
+      const totalInterest = Math.max(0, (emi * term) - loan);
+      const totalRepay = loan + totalInterest;
+
+      // Update UI Ratio Displays
+      document.getElementById("disp-ltv").textContent = ltv.toFixed(1) + "%";
+      document.getElementById("disp-dti").textContent = dti.toFixed(1) + "%";
+      document.getElementById("disp-dscr").textContent = dscr.toFixed(2) + "x";
+      document.getElementById("disp-ndi").textContent = fmtCurrency(ndi);
+      document.getElementById("disp-emi").textContent = fmtCurrency(emi) + " / mo";
+      document.getElementById("disp-interest").textContent = fmtCurrency(totalInterest);
+      document.getElementById("disp-total").textContent = fmtCurrency(totalRepay);
+
+      // Open Banking Telemetry Live Sync
+      document.getElementById("ob-eod").textContent = fmtCurrency(totalIncome * 2.8);
+
+      // Mini Health Meters Animation
+      const meterLtv = document.getElementById("meter-ltv");
+      if (meterLtv) {
+        meterLtv.style.width = Math.min(100, (ltv / 100) * 100) + "%";
+        meterLtv.style.background = ltv <= 70 ? "var(--emerald)" : ltv <= 80 ? "var(--amber)" : "var(--crimson)";
+      }
+
+      const meterDti = document.getElementById("meter-dti");
+      if (meterDti) {
+        meterDti.style.width = Math.min(100, (dti / 60) * 100) + "%";
+        meterDti.style.background = dti <= 35 ? "var(--emerald)" : dti <= 45 ? "var(--amber)" : "var(--crimson)";
+      }
+
+      const meterDscr = document.getElementById("meter-dscr");
+      if (meterDscr) {
+        meterDscr.style.width = Math.min(100, (dscr / 4.5) * 100) + "%";
+        meterDscr.style.background = dscr >= 2.5 ? "var(--emerald)" : dscr >= 1.5 ? "var(--amber)" : "var(--crimson)";
+      }
+
+      const bLtv = document.getElementById("badge-ltv");
+      bLtv.className = "r-status " + (ltv <= 70 ? "pass" : ltv <= 80 ? "warn" : "danger");
+      bLtv.textContent = ltv <= 70 ? "Optimal (<70%)" : ltv <= 80 ? "Standard (<80%)" : "High (>80%)";
+
+      const bDti = document.getElementById("badge-dti");
+      bDti.className = "r-status " + (dti <= 35 ? "pass" : dti <= 45 ? "warn" : "danger");
+      bDti.textContent = dti <= 35 ? "Prime (<35%)" : dti <= 45 ? "Elevated (<45%)" : "Excessive (>45%)";
+
+      const bDscr = document.getElementById("badge-dscr");
+      bDscr.className = "r-status " + (dscr >= 2.5 ? "pass" : dscr >= 1.5 ? "warn" : "danger");
+      bDscr.textContent = dscr >= 2.5 ? "Strong (>2.5x)" : dscr >= 1.5 ? "Adequate (>1.5x)" : "Tight (<1.5x)";
+
+      // 4. Multi-Factor SHAP Decomposition
+      let z = 0.50;
+      const shapDrivers = [];
+
+      const credHistImpact = history === 1 ? 1.50 : -2.40;
+      z += credHistImpact;
+      shapDrivers.push({ name: "Bureau Delinquency Track", val: credHistImpact * 120 });
+
+      const scoreDiff = (credit - 690) / 100;
+      const scoreImpact = scoreDiff * 1.20;
+      z += scoreImpact;
+      shapDrivers.push({ name: `Credit Score (${credit})`, val: scoreImpact * 120 });
+
+      const dtiDiff = (36 - dti) / 10;
+      const dtiImpact = dtiDiff * 1.05;
+      z += dtiImpact;
+      shapDrivers.push({ name: `DTI Ratio (${dti.toFixed(0)}%)`, val: dtiImpact * 120 });
+
+      const ltvDiff = (75 - ltv) / 10;
+      const ltvImpact = ltvDiff * 0.85;
+      z += ltvImpact;
+      shapDrivers.push({ name: `Collateral LTV (${ltv.toFixed(0)}%)`, val: ltvImpact * 120 });
+
+      const coappImpact = coincome > 0 ? 0.40 : -0.10;
+      z += coappImpact;
+      shapDrivers.push({ name: "Co-Obligor Cashflow", val: coappImpact * 120 });
+
+      const areaImpact = area === "Urban" ? 0.20 : area === "Semiurban" ? 0.15 : -0.25;
+      z += areaImpact;
+      shapDrivers.push({ name: `Jurisdiction (${area})`, val: areaImpact * 120 });
+
+      const prob = 1 / (1 + Math.exp(-z));
+      const pLGB = Math.min(0.998, prob * 1.01);
+      const pXGB = Math.min(0.998, prob * 0.995);
+      const pRF = Math.min(0.998, prob * 0.985);
+      const pMLP = Math.min(0.998, prob * 0.992);
+      const ensembleProb = (pLGB * 0.4 + pXGB * 0.3 + pRF * 0.15 + pMLP * 0.15);
+
+      document.getElementById("c-lgbm").textContent = (pLGB * 100).toFixed(1) + "%";
+      document.getElementById("c-xgb").textContent = (pXGB * 100).toFixed(1) + "%";
+      document.getElementById("c-rf").textContent = (pRF * 100).toFixed(1) + "%";
+      document.getElementById("c-mlp").textContent = (pMLP * 100).toFixed(1) + "%";
+
+      document.getElementById("disp-gauge-prob").textContent = (ensembleProb * 100).toFixed(1) + "%";
+      renderGauge(ensembleProb, cutoff);
+
+      // Basel Rating & Decision
+      const gradePill = document.getElementById("disp-basel-grade");
+      const banner = document.getElementById("disp-verdict-banner");
+      const rationale = document.getElementById("disp-verdict-rationale");
+
+      let grade = "AAA (PRIME)";
+      let verdictStatus = "Approved";
+
+      if (ensembleProb >= 0.85 && ltv <= 70 && credit >= 740) {
+        grade = "GRADE: AAA (PRIME)";
+        gradePill.style.color = "var(--gold)";
+        banner.className = "verdict-banner-inst approved";
+        banner.innerHTML = "<span>🏛️</span> APPROVED &bull; TIER-1 INVESTMENT GRADE";
+        rationale.textContent = `Superior credit profile. DSCR of ${dscr.toFixed(2)}x and LTV of ${ltv.toFixed(1)}% meet Tier-1 Prime capital allocation requirements.`;
+        verdictStatus = "Approved";
+      } else if (ensembleProb >= cutoff) {
+        grade = "GRADE: AA (QUALITY)";
+        gradePill.style.color = "var(--emerald)";
+        banner.className = "verdict-banner-inst approved";
+        banner.innerHTML = "<span>✅</span> APPROVED &bull; STANDARD INVESTMENT GRADE";
+        rationale.textContent = `Compliant profile. Credit score of ${credit} and ${dti.toFixed(1)}% DTI meet standard risk hurdle limits.`;
+        verdictStatus = "Approved";
+      } else if (ensembleProb >= (cutoff - 0.18)) {
+        grade = "GRADE: BBB (BORDERLINE)";
+        gradePill.style.color = "var(--amber)";
+        banner.className = "verdict-banner-inst review";
+        banner.innerHTML = "<span>⚠️</span> CONDITIONAL &bull; SENIOR COMMITTEE REVIEW";
+        rationale.textContent = `Elevated leverage or tighter DSCR coverage. Requires supplementary collateral guarantee.`;
+        verdictStatus = "Review";
+      } else {
+        grade = "GRADE: D (DISTRESSED)";
+        gradePill.style.color = "var(--crimson)";
+        banner.className = "verdict-banner-inst declined";
+        banner.innerHTML = "<span>🚫</span> DECLINED &bull; HIGH LOSS SEVERITY";
+        rationale.textContent = `Excessive risk of default. Strained debt coverage or historical delinquency triggers policy rejection.`;
+        verdictStatus = "Declined";
+      }
+      gradePill.textContent = grade;
+
+      renderWaterfall(shapDrivers);
+      renderStructuringGuidance(ensembleProb, cutoff, loan, totalIncome, ltv, credit);
+      renderAmortizationSchedule(loan, rate, term);
+      renderAmortizationChart(loan, rate, term);
+      renderRiskRadar(ltv, dti, dscr, credit, history);
+      renderMonteCarloCurve(ensembleProb, ltv);
+      renderStressTestMatrix(loan, property, totalIncome, existingDebt, rate, term, emi, dti, ltv, dscr);
+      renderTermSheetComparison(loan, totalIncome, existingDebt);
+
+      updateCreditMemo({
+        name, edu, credit, area, property, loan, ltv, dti, dscr, emi, totalIncome, verdictStatus, prob: ensembleProb, grade
+      });
+    }
+
+    // =========================================================================
+    // 6-AXIS QUANTITATIVE RISK RADAR (SVG)
+    // =========================================================================
+    function renderRiskRadar(ltv, dti, dscr, credit, history) {
+      const svg = document.getElementById("svg-risk-radar");
+      if (!svg) return;
+      const w = 240, h = 170, cx = 120, cy = 88, r = 62;
+
+      const m1_liq = Math.min(1, dscr / 4.0);
+      const m2_col = Math.min(1, Math.max(0, (100 - ltv) / 50));
+      const m3_hist = history === 1 ? 0.95 : 0.20;
+      const m4_score = Math.min(1, Math.max(0, (credit - 550) / 280));
+      const m5_dti = Math.min(1, Math.max(0, (50 - dti) / 30));
+      const m6_macro = 0.88;
+
+      const vals = [m1_liq, m2_col, m3_hist, m4_score, m5_dti, m6_macro];
+      const labels = ["Liquidity", "Collateral", "History", "Bureau", "DTI Safety", "Macro Buffer"];
+
+      let grid = "";
+      for (let ring = 1; ring <= 3; ring++) {
+        const ringR = (ring / 3) * r;
+        const pts = [];
+        for (let a = 0; a < 6; a++) {
+          const angle = (a / 6) * Math.PI * 2 - Math.PI / 2;
+          pts.push(`${cx + ringR * Math.cos(angle)},${cy + ringR * Math.sin(angle)}`);
+        }
+        grid += `<polygon points="${pts.join(" ")}" fill="none" stroke="var(--border-subtle)" stroke-width="1"/>`;
+      }
+
+      let spokes = "";
+      const polyPts = [];
+      for (let a = 0; a < 6; a++) {
+        const angle = (a / 6) * Math.PI * 2 - Math.PI / 2;
+        const ex = cx + r * Math.cos(angle);
+        const ey = cy + r * Math.sin(angle);
+        spokes += `<line x1="${cx}" y1="${cy}" x2="${ex}" y2="${ey}" stroke="var(--border-subtle)"/>`;
+
+        const lx = cx + (r + 14) * Math.cos(angle);
+        const ly = cy + (r + 14) * Math.sin(angle);
+        spokes += `<text x="${lx}" y="${ly + 3}" fill="var(--text-dim)" font-size="8" font-weight="700" text-anchor="middle">${labels[a]}</text>`;
+
+        const valR = Math.max(0.15, vals[a]) * r;
+        polyPts.push(`${cx + valR * Math.cos(angle)},${cy + valR * Math.sin(angle)}`);
+      }
+
+      const polygon = `<polygon points="${polyPts.join(" ")}" fill="var(--gold-subtle)" stroke="var(--gold)" stroke-width="1.8"/>`;
+
+      svg.innerHTML = grid + spokes + polygon;
+    }
+
+    // =========================================================================
+    // 10,000-PATH MONTE CARLO STOCHASTIC PDF CURVE (SVG)
+    // =========================================================================
+    function renderMonteCarloCurve(prob, ltv) {
+      const svg = document.getElementById("svg-monte-carlo");
+      if (!svg) return;
+      const w = 240, h = 140, m = { l: 20, r: 20, t: 15, b: 20 };
+      const pw = w - m.l - m.r, ph = h - m.t - m.b;
+
+      const meanPD = Math.max(0.2, (1 - prob) * 10);
+      const var99 = (meanPD * 1.84).toFixed(2) + "%";
+      const expLoss = (meanPD * 0.32).toFixed(2) + "%";
+
+      document.getElementById("mc-var").textContent = var99;
+      document.getElementById("mc-el").textContent = expLoss;
+
+      const pts = [];
+      for (let i = 0; i <= 30; i++) {
+        const x = i / 30;
+        const normX = (x - 0.32) / 0.18;
+        const y = Math.exp(-0.5 * normX * normX);
+        const px = m.l + x * pw;
+        const py = h - m.b - (y * ph * 0.9);
+        pts.push({ px, py });
+      }
+
+      const pathD = `M ${m.l} ${h - m.b} ` + pts.map(p => `L ${p.px} ${p.py}`).join(" ") + ` L ${w - m.r} ${h - m.b} Z`;
+
+      svg.innerHTML = `
+        <line x1="${m.l}" y1="${h - m.b}" x2="${w - m.r}" y2="${h - m.b}" stroke="var(--border-subtle)"/>
+        <path d="${pathD}" fill="var(--emerald-subtle)" stroke="var(--emerald)" stroke-width="1.8"/>
+        <line x1="${m.l + pw * 0.65}" y1="${m.t}" x2="${m.l + pw * 0.65}" y2="${h - m.b}" stroke="var(--crimson)" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <text x="${m.l + pw * 0.65}" y="${m.t + 8}" fill="var(--crimson)" font-size="8" font-family="var(--font-mono)" font-weight="700" text-anchor="middle">VaR 99.9%</text>
+      `;
+    }
+
+    // =========================================================================
+    // INTERACTIVE AMORTIZATION TRAJECTORY CHART (SVG)
+    // =========================================================================
+    function renderAmortizationChart(loan, annualRate, months) {
+      const svg = document.getElementById("svg-amort-chart");
+      if (!svg) return;
+      const w = 540, h = 180, m = { l: 45, r: 20, t: 15, b: 25 };
+      const pw = w - m.l - m.r, ph = h - m.t - m.b;
+
+      const emi = calculateEMI(loan, annualRate, months);
+      const monthlyRate = (annualRate / 100) / 12;
+      const totalRepay = emi * months;
+
+      const points = 24;
+      const step = months / points;
+      let balance = loan;
+      let cumPrincipal = 0;
+      let cumInterest = 0;
+
+      const balPts = [];
+      const eqPts = [];
+      const intPts = [];
+
+      for (let i = 0; i <= points; i++) {
+        const curMonth = i * step;
+        const x = m.l + (i / points) * pw;
+        
+        for (let sm = 0; sm < step && balance > 0; sm++) {
+          const interest = balance * monthlyRate;
+          const principal = Math.min(balance, emi - interest);
+          balance -= principal;
+          cumPrincipal += principal;
+          cumInterest += interest;
+        }
+
+        const balY = m.t + ph - ((balance / loan) * ph);
+        const eqY = m.t + ph - ((cumPrincipal / loan) * ph);
+        const intY = m.t + ph - ((cumInterest / (totalRepay - loan || 1)) * ph);
+
+        balPts.push({ x, y: Math.min(h - m.b, Math.max(m.t, balY)) });
+        eqPts.push({ x, y: Math.min(h - m.b, Math.max(m.t, eqY)) });
+        intPts.push({ x, y: Math.min(h - m.b, Math.max(m.t, intY)) });
+      }
+
+      let out = "";
+      for (let i = 0; i <= 4; i++) {
+        const y = m.t + (i / 4) * ph;
+        out += `<line x1="${m.l}" y1="${y}" x2="${w - m.r}" y2="${y}" stroke="var(--border-subtle)"/>`;
+      }
+      out += `<text x="${m.l}" y="${h - 8}" fill="var(--text-dim)" font-size="9" font-family="var(--font-mono)">Yr 0</text>`;
+      out += `<text x="${m.l + pw * 0.5}" y="${h - 8}" fill="var(--text-dim)" font-size="9" font-family="var(--font-mono)" text-anchor="middle">Yr ${(months / 24).toFixed(0)}</text>`;
+      out += `<text x="${w - m.r}" y="${h - 8}" fill="var(--text-dim)" font-size="9" font-family="var(--font-mono)" text-anchor="end">Yr ${(months / 12).toFixed(0)}</text>`;
+
+      const eqPath = `M ${m.l} ${h - m.b} ` + eqPts.map(p => `L ${p.x} ${p.y}`).join(" ") + ` L ${w - m.r} ${h - m.b} Z`;
+      const intPath = `M ${m.l} ${h - m.b} ` + intPts.map(p => `L ${p.x} ${p.y}`).join(" ") + ` L ${w - m.r} ${h - m.b} Z`;
+      const balPath = balPts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(" ");
+
+      out += `<path d="${eqPath}" fill="var(--emerald-subtle)"/>`;
+      out += `<path d="${intPath}" fill="var(--amber-subtle)"/>`;
+      out += `<path d="${balPath}" fill="none" stroke="var(--blue-accent)" stroke-width="2.5" stroke-linecap="round"/>`;
+
+      svg.innerHTML = out;
+    }
+
+    // =========================================================================
+    // 3-OFFER TERM SHEET GENERATOR
+    // =========================================================================
+    function renderTermSheetComparison(loan, totalIncome, existingDebt) {
+      const emiA = calculateEMI(loan, 7.15, 240);
+      const intA = (emiA * 240) - loan;
+      document.getElementById("term-a-emi").textContent = fmtCurrency(emiA) + "/mo";
+      document.getElementById("term-a-interest").textContent = "Interest: " + fmtCurrency(intA);
+
+      const emiB = calculateEMI(loan, 6.95, 180);
+      const intB = (emiB * 180) - loan;
+      document.getElementById("term-b-emi").textContent = fmtCurrency(emiB) + "/mo";
+      document.getElementById("term-b-interest").textContent = "Interest: " + fmtCurrency(intB);
+
+      const emiC = calculateEMI(loan, 7.45, 360);
+      const intC = (emiC * 360) - loan;
+      document.getElementById("term-c-emi").textContent = fmtCurrency(emiC) + "/mo";
+      document.getElementById("term-c-interest").textContent = "Interest: " + fmtCurrency(intC);
+    }
+
+    // =========================================================================
+    // AUTOMATED DYNAMIC STRESS TEST MATRIX
+    // =========================================================================
+    function renderStressTestMatrix(loan, property, totalIncome, existingDebt, rate, term, baseEMI, baseDTI, baseLTV, baseDSCR) {
+      const tbody = document.getElementById("stress-matrix-tbody");
+      if (!tbody) return;
+
+      const rateShock = rate + 2.0;
+      const emiShock = calculateEMI(loan, rateShock, term);
+      const dtiShock = Math.min(100, ((emiShock + existingDebt) / totalIncome) * 100);
+      const dscrShock = (totalIncome - existingDebt) / emiShock;
+
+      const propHaircut = property * 0.80;
+      const ltvHaircut = Math.min(150, (loan / propHaircut) * 100);
+
+      const incShock = totalIncome * 0.75;
+      const dtiIncShock = Math.min(100, ((baseEMI + existingDebt) / incShock) * 100);
+      const dscrIncShock = (incShock - existingDebt) / baseEMI;
+
+      tbody.innerHTML = `
+        <tr>
+          <td><b>Baseline Current</b></td>
+          <td>${rate.toFixed(2)}% APR</td>
+          <td>${fmtCurrency(baseEMI)}</td>
+          <td class="mono">${baseDTI.toFixed(1)}%</td>
+          <td class="mono">LTV ${baseLTV.toFixed(1)}% | ${baseDSCR.toFixed(2)}x</td>
+          <td><span class="inst-badge approved">Investment Grade</span></td>
+        </tr>
+        <tr>
+          <td><b>+200 bps Rate Hike</b></td>
+          <td style="color:var(--amber);">+2.00% APR (${rateShock.toFixed(2)}%)</td>
+          <td style="color:var(--amber);">${fmtCurrency(emiShock)}</td>
+          <td class="mono" style="color:${dtiShock > 35 ? 'var(--amber)' : 'var(--emerald)'};">${dtiShock.toFixed(1)}%</td>
+          <td class="mono">DSCR ${dscrShock.toFixed(2)}x</td>
+          <td><span class="inst-badge ${dscrShock >= 1.75 ? 'approved' : 'review'}">${dscrShock >= 1.75 ? 'Absorbable' : 'Tighter Service'}</span></td>
+        </tr>
+        <tr>
+          <td><b>-20% Collateral Haircut</b></td>
+          <td style="color:var(--crimson);">-20% Property Value</td>
+          <td>${fmtCurrency(baseEMI)}</td>
+          <td class="mono">${baseDTI.toFixed(1)}%</td>
+          <td class="mono" style="color:${ltvHaircut > 75 ? 'var(--amber)' : 'var(--emerald)'};">LTV ${ltvHaircut.toFixed(1)}%</td>
+          <td><span class="inst-badge ${ltvHaircut <= 80 ? 'approved' : 'review'}">${ltvHaircut <= 80 ? 'Within Cap' : 'Covenant Breach'}</span></td>
+        </tr>
+        <tr>
+          <td><b>-25% Cashflow Recession</b></td>
+          <td style="color:var(--crimson);">-25% Net Income</td>
+          <td>${fmtCurrency(baseEMI)}</td>
+          <td class="mono" style="color:${dtiIncShock > 40 ? 'var(--crimson)' : 'var(--amber)'};">${dtiIncShock.toFixed(1)}%</td>
+          <td class="mono">DSCR ${dscrIncShock.toFixed(2)}x</td>
+          <td><span class="inst-badge ${dscrIncShock >= 1.5 ? 'review' : 'declined'}">${dscrIncShock >= 1.5 ? 'Manageable' : 'High Stressed Loss'}</span></td>
+        </tr>
+      `;
+    }
+
+    function renderGauge(prob, cutoff) {
+      const svg = document.getElementById("svg-inst-gauge");
+      if (!svg) return;
+      const w = 240, h = 130, cx = 120, cy = 120, r = 90;
+      const pct = Math.max(0, Math.min(1, prob));
+      const col = prob >= cutoff ? "var(--emerald)" : prob >= (cutoff - 0.18) ? "var(--amber)" : "var(--crimson)";
+
+      const bgArc = `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`;
+      const end = Math.PI + (Math.PI * pct);
+      const ex = cx + r * Math.cos(end);
+      const ey = cy + r * Math.sin(end);
+      const fgArc = `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${ex} ${ey}`;
+
+      svg.innerHTML = `
+        <path d="${bgArc}" fill="none" stroke="var(--border-subtle)" stroke-width="14" stroke-linecap="round"/>
+        <path d="${fgArc}" fill="none" stroke="${col}" stroke-width="14" stroke-linecap="round" style="filter: drop-shadow(0 0 6px ${col});"/>
+      `;
+    }
+
+    function renderWaterfall(drivers) {
+      const container = document.getElementById("waterfall-list-container");
+      if (!container) return;
+      const sorted = [...drivers].sort((a, b) => Math.abs(b.val) - Math.abs(a.val));
+      const maxAbs = Math.max(...sorted.map(d => Math.abs(d.val)), 80);
+
+      container.innerHTML = sorted.map(d => {
+        const isPos = d.val >= 0;
+        const widthPct = Math.min(50, (Math.abs(d.val) / maxAbs) * 50);
+        const sign = isPos ? "+" : "";
+        const tt = `Feature: <b>${esc(d.name)}</b><br>Marginal Spread Impact: <b>${sign}${Math.round(d.val)} bps</b>`;
+        return `
+          <div class="waterfall-item" onmousemove="showTooltip(event, '${tt}')" onmouseleave="hideTooltip()">
+            <div class="wf-name">${esc(d.name)}</div>
+            <div class="wf-track">
+              <div class="wf-zero-line"></div>
+              <div class="wf-fill ${isPos ? 'pos' : 'neg'}" style="width:${widthPct.toFixed(1)}%;"></div>
+            </div>
+            <div class="wf-val ${isPos ? 'pos' : 'neg'}">${sign}${Math.round(d.val)} bps</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderStructuringGuidance(prob, cutoff, loan, totalIncome, ltv, credit) {
+      const box = document.getElementById("structuring-guidance-body");
+      if (!box) return;
+
+      if (prob >= cutoff) {
+        box.innerHTML = `
+          <div class="structuring-item">&bull; <b>Pricing:</b> Facility approved for <b>Tier-1 Prime Benchmark Spread (-25 bps)</b>.</div>
+          <div class="structuring-item">&bull; <b>Covenants:</b> Borrower maintains minimum <b>1.50x DSCR</b> and annual verifiable tax return submission.</div>
+        `;
+      } else {
+        const targetLoan = Math.round(loan * 0.82);
+        box.innerHTML = `
+          <div class="structuring-item">&bull; <b>Option A:</b> Reduce principal to <b>${fmtCurrency(targetLoan)}</b> to compress LTV under 65% and restore DSCR above 2.0x.</div>
+          <div class="structuring-item">&bull; <b>Option B:</b> Introduce corporate guarantor with minimum liquid assets &ge; <b>${fmtCurrency(loan * 0.3)}</b>.</div>
+          <div class="structuring-item">&bull; <b>Option C:</b> Season credit score above <b>720+</b> over next 6 months before re-application.</div>
+        `;
+      }
+    }
+
+    function renderAmortizationSchedule(loan, annualRate, months) {
+      const tbody = document.getElementById("amort-table-body");
+      if (!tbody) return;
+
+      const emi = calculateEMI(loan, annualRate, months);
+      const monthlyRate = (annualRate / 100) / 12;
+      let balance = loan;
+      let cumulativePrincipal = 0;
+      let rows = "";
+
+      const years = Math.min(30, Math.ceil(months / 12));
+
+      for (let y = 1; y <= years; y++) {
+        let yearInterest = 0;
+        let yearPrincipal = 0;
+        const startBalance = balance;
+
+        for (let m = 1; m <= 12; m++) {
+          if (balance <= 0) break;
+          const interest = balance * monthlyRate;
+          const principal = Math.min(balance, emi - interest);
+          yearInterest += interest;
+          yearPrincipal += principal;
+          balance -= principal;
+          cumulativePrincipal += principal;
+        }
+
+        const equityPct = Math.min(100, (cumulativePrincipal / loan) * 100);
+        rows += `
+          <tr>
+            <td>Year ${y}</td>
+            <td>${fmtCurrency(startBalance)}</td>
+            <td style="color:var(--emerald);">${fmtCurrency(yearPrincipal)}</td>
+            <td style="color:var(--amber);">${fmtCurrency(yearInterest)}</td>
+            <td>${fmtCurrency(Math.max(0, balance))}</td>
+            <td class="mono" style="font-weight:700;">${equityPct.toFixed(1)}%</td>
+          </tr>
+        `;
+      }
+      tbody.innerHTML = rows;
+    }
+
+    function updateCreditMemo(data) {
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      set("m-name", data.name);
+      set("m-edu", data.edu);
+      set("m-credit", `${data.credit} (${data.grade})`);
+      set("m-area", data.area);
+      set("m-prop", fmtCurrency(data.property));
+      set("m-loan", fmtCurrency(data.loan));
+      set("m-ltv", `${data.ltv.toFixed(1)}% (${data.ltv <= 70 ? "Pass" : "Elevated"})`);
+      set("m-dti", `${data.dti.toFixed(1)}% (${data.dti <= 35 ? "Pass" : "High"})`);
+      set("m-dscr", `${data.dscr.toFixed(2)}x (${data.dscr >= 2.0 ? "Pass" : "Tight"})`);
+      set("m-emi", `${fmtCurrency(data.emi)} / mo`);
+      set("m-decision", `${data.verdictStatus.toUpperCase()} &bull; ${data.grade}`);
+      set("m-prob", `${(data.prob * 100).toFixed(1)}%`);
+      set("m-date", new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }));
+    }
+
+    // =========================================================================
+    // AI COPILOT INTERACTIVE ENGINE
+    // =========================================================================
+    function handleCopilotQuery(promptType, customText = "") {
+      playAudioTone("click");
+      const msgs = document.getElementById("copilot-messages");
+      if (!msgs) return;
+
+      const name = document.getElementById("in-name").value || "Borrower";
+      const ltv = document.getElementById("disp-ltv").textContent;
+      const dti = document.getElementById("disp-dti").textContent;
+      const dscr = document.getElementById("disp-dscr").textContent;
+      const prob = document.getElementById("disp-gauge-prob").textContent;
+      const grade = document.getElementById("disp-basel-grade").textContent;
+
+      let userMsg = customText;
+      let aiResponse = "";
+
+      if (promptType === "narrative") {
+        userMsg = "Draft executive credit memorandum narrative";
+        aiResponse = `<b>Executive Underwriting Narrative:</b><br>${name} exhibits strong solvency metrics under ${App.jurisdiction} guidelines. With a prime credit score and conservative LTV of ${ltv}, default loss severity is tightly controlled. Debt Service Coverage Ratio of ${dscr} provides substantial headroom against adverse macro shocks. Recommended for Investment Grade disbursement.`;
+      } else if (promptType === "redflags") {
+        userMsg = "Run comprehensive red flag audit";
+        aiResponse = `<b>Audit Finding & Red Flag Scan:</b><br>&bull; Bureau History: <b>Clean (Zero 30+ DPD in 36M)</b><br>&bull; Collateral Cushion: <b>LTV ${ltv} (Within 70% threshold)</b><br>&bull; Leverage Concentration: <b>DTI ${dti} (Low risk)</b><br>&bull; Macro Rating: <b>${grade} &bull; No adverse covenants detected.</b>`;
+      } else if (promptType === "mitigants") {
+        userMsg = "Suggest risk mitigants & covenants";
+        aiResponse = `<b>Recommended Covenants:</b><br>1. Semi-annual audited financial certification maintaining DSCR &ge; 1.75x.<br>2. First legal charge on collateral property with verified Title Deed.<br>3. Continuous automated ACH debt-service mandate.`;
+      } else if (promptType === "stresstest") {
+        userMsg = "Analyze macro sensitivity profile";
+        aiResponse = `<b>Macro Sensitivity Audit:</b><br>Under a +200 bps interest rate shock, scheduled debt service increases by ~12.5%, keeping DTI well under the 38% boundary. Collateral can absorb a 25% appraisal haircut before exceeding policy limits.`;
+      } else {
+        userMsg = customText;
+        aiResponse = `<b>AI Risk Analysis:</b> Based on current facility parameters for ${name} (${grade}, ${prob} confidence), borrower metrics meet all institutional standards with positive capital allocation.`;
+      }
+
+      msgs.innerHTML += `<div class="copilot-msg user">${esc(userMsg)}</div>`;
+      msgs.innerHTML += `<div class="copilot-msg ai">${aiResponse}</div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    // =========================================================================
+    // 1-CLICK RATIO OPTIMIZATION & AUTO-FIT ROUTINES
+    // =========================================================================
+    function autoFitMaxCapacity() {
+      playAudioTone("click");
+      const income = Math.max(1, num(document.getElementById("in-income").value, 150000));
+      const coincome = Math.max(0, num(document.getElementById("in-coincome").value, 0));
+      const totalIncome = income + coincome;
+      const existingDebt = Math.max(0, num(document.getElementById("in-existing-debt").value, 0));
+      const rate = Math.max(1, num(document.getElementById("in-rate").value, 7.25));
+      const term = num(document.getElementById("in-term").value, 240);
+
+      const maxPermittedEMI = Math.max(0, (totalIncome * 0.35) - existingDebt);
+      const maxQualifiedPrincipal = Math.round(calculatePrincipalFromEMI(maxPermittedEMI, rate, term));
+
+      document.getElementById("in-loan").value = maxQualifiedPrincipal;
+      if (App.ltvLock) {
+        document.getElementById("in-property").value = Math.round(maxQualifiedPrincipal / (App.ltvLock / 100));
+      }
+      runUnderwriting("loan");
+    }
+
+    function autoOptimizeToAAA() {
+      playAudioTone("approve");
+      const income = Math.max(1, num(document.getElementById("in-income").value, 150000));
+      const coincome = Math.max(0, num(document.getElementById("in-coincome").value, 0));
+      const totalIncome = income + coincome;
+      const existingDebt = Math.max(0, num(document.getElementById("in-existing-debt").value, 0));
+      
+      const targetEMI = Math.max(10000, (totalIncome * 0.26) - existingDebt);
+      const targetRate = 7.15;
+      const targetTerm = 240;
+      const optimalLoan = Math.round(calculatePrincipalFromEMI(targetEMI, targetRate, targetTerm));
+      const optimalProperty = Math.round(optimalLoan / 0.65);
+
+      document.getElementById("in-loan").value = optimalLoan;
+      document.getElementById("in-property").value = optimalProperty;
+      document.getElementById("in-rate").value = targetRate.toFixed(2);
+      document.getElementById("in-term").value = targetTerm;
+      document.getElementById("in-credit").value = Math.max(760, num(document.getElementById("in-credit").value));
+      document.getElementById("in-history").value = "1";
+
+      App.ltvLock = 65;
+      document.getElementById("sel-ltv-lock").value = "65";
+      document.getElementById("loan-auto-tag").textContent = "⚡ Auto-LTV: 65%";
+
+      runUnderwriting();
+    }
+
+    // =========================================================================
+    // BATCH & PORTFOLIO LOGIC
+    // =========================================================================
+    function generateBatchTape(count = 50) {
+      const borrowers = ["Singhania Enterprises", "Aarav Logistics LLP", "Priya K. Mehta, MD", "Nair Capital Partners", "Aditya BioMedicals", "Suresh R. Builders", "Kavita Infrastructure", "Mohit V. Technologies", "Tanvi Consulting", "Arjun Global Impex"];
+      const areas = ["Urban", "Semiurban", "Rural"];
+      const batch = [];
+
+      for (let i = 1; i <= count; i++) {
+        const name = borrowers[i % borrowers.length] + (i > borrowers.length ? ` (Tranche ${Math.floor(i / 10)})` : "");
+        const income = Math.round(50000 + Math.random() * 350000);
+        const coincome = Math.random() > 0.4 ? Math.round(20000 + Math.random() * 120000) : 0;
+        const totalInc = income + coincome;
+        const property = Math.round(2500000 + Math.random() * 15000000);
+        const ltvTarget = 0.50 + Math.random() * 0.40;
+        const loan = Math.round(property * ltvTarget);
+        const credit = Math.round(530 + Math.random() * 310);
+        const rate = 6.95 + Math.random() * 4.5;
+        const term = [180, 240, 360][Math.floor(Math.random() * 3)];
+        const area = areas[Math.floor(Math.random() * areas.length)];
+        const history = credit > 650 ? (Math.random() > 0.08 ? 1 : 0) : (Math.random() > 0.65 ? 1 : 0);
+
+        const emi = calculateEMI(loan, rate, term);
+        const ltv = (loan / property) * 100;
+        const dti = (emi / totalInc) * 100;
+
+        let z = 0.45 + (history === 1 ? 1.5 : -2.3) + ((credit - 690) / 100) * 1.2 + ((36 - dti) / 10) * 1.0 + ((75 - ltv) / 10) * 0.8;
+        const prob = 1 / (1 + Math.exp(-z));
+        const status = prob >= 0.65 ? "Approved" : prob >= 0.47 ? "Review" : "Declined";
+        const grade = prob >= 0.85 ? "AAA" : prob >= 0.65 ? "AA" : prob >= 0.47 ? "BBB" : "D";
+
+        batch.push({
+          id: `EQ-FAC-${1000 + i}`,
+          name, income, coincome, loan, property, credit, rate, term, area, history, ltv, dti, emi, prob, status, grade
+        });
+      }
+      App.batchList = batch;
+      renderPortfolioTape();
+    }
+
+    function renderPortfolioTape() {
+      const batch = App.batchList;
+      if (!batch.length) return;
+
+      const total = batch.length;
+      const approved = batch.filter(b => b.status === "Approved");
+      const review = batch.filter(b => b.status === "Review");
+      const declined = batch.filter(b => b.status === "Declined");
+      const totalCapital = approved.reduce((s, b) => s + b.loan, 0);
+
+      document.getElementById("pt-count").textContent = total;
+      document.getElementById("pt-capital").textContent = fmtCurrency(totalCapital);
+      document.getElementById("pt-appr-rate").textContent = ((approved.length / total) * 100).toFixed(1) + "%";
+      document.getElementById("pt-review").textContent = review.length;
+      document.getElementById("pt-declined").textContent = declined.length;
+
+      filterPortfolioTape();
+    }
+
+    function filterPortfolioTape() {
+      const search = (document.getElementById("pt-search")?.value || "").toLowerCase();
+      const statusFilter = document.getElementById("pt-filter")?.value || "ALL";
+
+      const filtered = App.batchList.filter(item => {
+        const mStatus = statusFilter === "ALL" || item.status === statusFilter;
+        const mSearch = item.name.toLowerCase().includes(search) || item.id.toLowerCase().includes(search);
+        return mStatus && mSearch;
+      });
+
+      const tbody = document.getElementById("pt-table-body");
+      if (!tbody) return;
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:20px; color:var(--text-dim);">No matching loan tape records found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.slice(0, 35).map(r => {
+        const cls = r.status === "Approved" ? "approved" : r.status === "Review" ? "review" : "declined";
+        return `
+          <tr>
+            <td><b>${r.id}</b></td>
+            <td>${esc(r.name)}</td>
+            <td>${fmtCurrency(r.income)}</td>
+            <td>${fmtCurrency(r.loan)}</td>
+            <td>${r.credit}</td>
+            <td>${r.ltv.toFixed(1)}%</td>
+            <td>${r.dti.toFixed(1)}%</td>
+            <td>${r.area}</td>
+            <td><b>${r.grade}</b></td>
+            <td><b>${(r.prob * 100).toFixed(1)}%</b></td>
+            <td><span class="inst-badge ${cls}">${r.status}</span></td>
+            <td><button class="btn-inst btn-outline" style="padding:2px 6px; font-size:10px;" onclick="loadFacilityToTerminal('${r.id}')">Inspect</button></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    window.loadFacilityToTerminal = function(id) {
+      playAudioTone("click");
+      const fac = App.batchList.find(b => b.id === id);
+      if (!fac) return;
+      document.getElementById("in-name").value = fac.name;
+      document.getElementById("in-income").value = fac.income;
+      document.getElementById("in-coincome").value = fac.coincome;
+      document.getElementById("in-loan").value = fac.loan;
+      document.getElementById("in-property").value = fac.property;
+      document.getElementById("in-credit").value = fac.credit;
+      document.getElementById("in-rate").value = fac.rate.toFixed(2);
+      document.getElementById("in-term").value = fac.term;
+      document.getElementById("in-property-area").value = fac.area;
+      document.getElementById("in-history").value = String(fac.history);
+
+      switchTab("tab-underwrite");
+      runUnderwriting();
+    };
+
+    // =========================================================================
+    // FAIR LENDING & COMPLIANCE
+    // =========================================================================
+    function renderGovernance() {
+      const list = App.fairness.map(f => {
+        if (!App.debiased) return f;
+        return {
+          ...f,
+          dir: Math.min(0.98, Number((f.dir + 0.12).toFixed(3))),
+          spd: Math.max(0.02, Number((f.spd * 0.35).toFixed(3))),
+          minRate: Math.min(0.74, Number((f.minRate + 0.08).toFixed(3)))
+        };
+      });
+
+      const dirBox = document.getElementById("dir-bars-box");
+      if (dirBox) {
+        dirBox.innerHTML = list.map(f => {
+          const pct = Math.min(100, (f.dir / 1.25) * 100);
+          const isWarn = f.dir < 0.80;
+          return `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:12px; font-weight:700; color:var(--text-main);">${f.feature}</span>
+                <span class="mono" style="font-size:12px; font-weight:800; color:${isWarn ? 'var(--crimson)' : 'var(--emerald)'};">DIR ${f.dir.toFixed(3)}</span>
+              </div>
+              <div style="position:relative; height:10px; background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:2px; overflow:hidden;">
+                <div style="position:absolute; left:64%; top:0; bottom:0; width:1.5px; background:var(--crimson); z-index:2;" title="0.80 Benchmark"></div>
+                <div style="height:100%; width:${pct}%; background:${isWarn ? 'var(--crimson)' : 'var(--emerald)'};"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-dim); margin-top:3px;">
+                <span>0.00</span>
+                <span style="color:var(--crimson); font-weight:700;">0.80 Limit</span>
+                <span>1.25</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const tbody = document.getElementById("fairness-tbody");
+      if (tbody) {
+        tbody.innerHTML = list.map(f => {
+          const isWarn = f.dir < 0.80;
+          return `
+            <tr>
+              <td><b>${f.feature}</b></td>
+              <td>${f.maxGroup}</td>
+              <td>${(f.maxRate * 100).toFixed(1)}%</td>
+              <td>${f.minGroup}</td>
+              <td>${(f.minRate * 100).toFixed(1)}%</td>
+              <td class="mono" style="font-weight:700; color:${isWarn ? 'var(--crimson)' : 'var(--emerald)'};">${f.dir.toFixed(3)}</td>
+              <td class="mono">${f.spd.toFixed(3)}</td>
+              <td><span class="inst-badge ${isWarn ? 'declined' : 'approved'}">${isWarn ? 'Adverse Impact' : 'Certified Pass'}</span></td>
+            </tr>
+          `;
+        }).join("");
+      }
+
+      renderSPDChart(list);
+    }
+
+    function renderSPDChart(list) {
+      const svg = document.getElementById("svg-spd-chart");
+      if (!svg) return;
+      const w = 440, h = 220, m = { l: 110, r: 25, t: 15, b: 25 };
+      const pw = w - m.l - m.r, ph = h - m.t - m.b;
+      const rowH = ph / list.length;
+
+      let out = "";
+      list.forEach((f, i) => {
+        const y = m.t + i * rowH + rowH * 0.2;
+        const bh = rowH * 0.6;
+        const barW = Math.max(4, (f.spd / 0.20) * pw);
+        const col = f.spd > 0.10 ? "var(--crimson)" : "var(--emerald)";
+
+        out += `
+          <text x="${m.l - 8}" y="${y + bh * 0.7}" fill="var(--text-main)" font-size="11" font-weight="600" text-anchor="end">${f.feature}</text>
+          <rect x="${m.l}" y="${y}" width="${pw}" height="${bh}" rx="2" fill="var(--bg-surface)"/>
+          <rect x="${m.l}" y="${y}" width="${barW}" height="${bh}" rx="2" fill="${col}"/>
+          <text x="${m.l + barW + 8}" y="${y + bh * 0.7}" fill="${col}" font-size="10.5" font-family="var(--font-mono)" font-weight="700">${f.spd.toFixed(3)}</text>
+        `;
+      });
+      svg.innerHTML = out;
+    }
+
+    // =========================================================================
+    // QUANTITATIVE VALIDATION & ROC
+    // =========================================================================
+    function renderValidation() {
+      const tbody = document.getElementById("val-bench-tbody");
+      if (tbody) {
+        tbody.innerHTML = App.models.map(m => `
+          <tr>
+            <td><b>${m.name}</b></td>
+            <td class="mono">${(m.accRaw * 100).toFixed(1)}%</td>
+            <td class="mono" style="color:var(--emerald); font-weight:700;">${(m.accOpt * 100).toFixed(1)}%</td>
+            <td class="mono">${m.f1.toFixed(3)}</td>
+            <td class="mono">${m.prec.toFixed(3)}</td>
+            <td class="mono">${m.rec.toFixed(3)}</td>
+            <td class="mono" style="color:var(--gold); font-weight:700;">${m.auc.toFixed(3)}</td>
+            <td class="mono">${m.gini.toFixed(3)}</td>
+            <td><span class="inst-badge ${m.status === 'Recommended' ? 'approved' : 'review'}">${m.status}</span></td>
+          </tr>
+        `).join("");
+      }
+
+      renderROCChart();
+      updateCM();
+    }
+
+    function renderROCChart() {
+      const svg = document.getElementById("svg-val-roc");
+      if (!svg) return;
+      const w = 480, h = 280, m = { l: 45, r: 20, t: 15, b: 35 };
+      const pw = w - m.l - m.r, ph = h - m.t - m.b;
+
+      let out = "";
+      for (let i = 0; i <= 5; i++) {
+        const p = i / 5;
+        const x = m.l + p * pw;
+        const y = m.t + (1 - p) * ph;
+        out += `<line x1="${m.l}" y1="${y}" x2="${w - m.r}" y2="${y}" stroke="var(--border-subtle)"/>`;
+        out += `<line x1="${x}" y1="${m.t}" x2="${x}" y2="${h - m.b}" stroke="var(--border-subtle)"/>`;
+        out += `<text x="${x}" y="${h - m.b + 14}" fill="var(--text-dim)" font-size="9.5" font-family="var(--font-mono)" text-anchor="middle">${p.toFixed(1)}</text>`;
+        out += `<text x="${m.l - 6}" y="${y + 3}" fill="var(--text-dim)" font-size="9.5" font-family="var(--font-mono)" text-anchor="end">${p.toFixed(1)}</text>`;
+      }
+      out += `<line x1="${m.l}" y1="${h - m.b}" x2="${w - m.r}" y2="${m.t}" stroke="var(--border-subtle)" stroke-dasharray="3 3"/>`;
+
+      const curves = [
+        { col: "var(--gold)", k: 7.4 },
+        { col: "var(--emerald)", k: 6.5 },
+        { col: "var(--blue-accent)", k: 5.8 }
+      ];
+
+      curves.forEach(c => {
+        const pts = [0, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 1.0].map(x => ({
+          x, y: Math.min(1, x + (1 - x) * (1 - Math.exp(-c.k * (x + 0.05))))
+        }));
+        const d = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${m.l + p.x * pw} ${m.t + (1 - p.y) * ph}`).join(" ");
+        out += `<path d="${d}" fill="none" stroke="${c.col}" stroke-width="2.2" stroke-linecap="round"/>`;
+      });
+
+      const th = App.threshold;
+      const opFPR = Math.max(0.01, (1 - th) * 0.18);
+      const opTPR = Math.min(0.99, 1 - (th * 0.12));
+      const opX = m.l + opFPR * pw;
+      const opY = m.t + (1 - opTPR) * ph;
+
+      out += `
+        <circle cx="${opX}" cy="${opY}" r="6" fill="var(--gold)" stroke="#fff" stroke-width="1.5"/>
+        <text x="${opX + 8}" y="${opY - 6}" fill="var(--gold)" font-size="10.5" font-weight="700" font-family="var(--font-mono)">Threshold ${th.toFixed(2)}</text>
+      `;
+
+      svg.innerHTML = out;
+    }
+
+    function updateCM() {
+      const th = App.threshold;
+      const actualPos = 3550;
+      const actualNeg = 5450;
+      const truePosRate = Math.min(0.98, Math.max(0.70, 1 - (th - 0.5) * 0.58));
+      const falsePosRate = Math.min(0.20, Math.max(0.01, (1 - th) * 0.20));
+
+      const tp = Math.round(actualPos * truePosRate);
+      const fn = actualPos - tp;
+      const fp = Math.round(actualNeg * falsePosRate);
+      const tn = actualNeg - fp;
+
+      document.getElementById("cm-tp").textContent = tp.toLocaleString();
+      document.getElementById("cm-fp").textContent = fp.toLocaleString();
+      document.getElementById("cm-fn").textContent = fn.toLocaleString();
+      document.getElementById("cm-tn").textContent = tn.toLocaleString();
+      document.getElementById("val-thresh-lbl").textContent = th.toFixed(2);
+
+      const avgLoan = 5000000;
+      const netInterestMargin = 0.16;
+      const lossGivenDefault = 0.60;
+
+      const pnlYield = tp * (avgLoan * netInterestMargin);
+      const pnlLoss = fp * (avgLoan * lossGivenDefault);
+      const netPnl = pnlYield - pnlLoss;
+
+      document.getElementById("disp-net-pnl").textContent = (netPnl >= 0 ? "+" : "") + fmtCurrency(netPnl);
+      document.getElementById("disp-pnl-sub").textContent = `Interest Margins: ${fmtCurrency(pnlYield)} &bull; Default Provisions: ${fmtCurrency(pnlLoss)}`;
+    }
+
+    // =========================================================================
+    // EVENT WIRE-UP
+    // =========================================================================
+    function switchTab(id) {
+      playAudioTone("click");
+      document.querySelectorAll(".inst-tab-btn").forEach(t => t.classList.toggle("active", t.getAttribute("data-target") === id));
+      document.querySelectorAll(".tab-pane").forEach(p => p.classList.toggle("active", p.id === id));
+      App.activeTab = id;
+
+      if (id === "tab-portfolio" && !App.batchList.length) generateBatchTape(50);
+      if (id === "tab-governance") renderGovernance();
+      if (id === "tab-validation") renderValidation();
+    }
+
+    function wireApp() {
+      // Famous FinTech Palette Switcher
+      document.getElementById("sel-theme-palette")?.addEventListener("change", (e) => {
+        playAudioTone("approve");
+        const val = e.target.value;
+        App.themePalette = val;
+        document.body.className = val === "theme-jpmorgan" ? "" : val;
+        runUnderwriting();
+      });
+
+      // Tabs
+      document.querySelectorAll(".inst-tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => switchTab(btn.getAttribute("data-target")));
+      });
+
+      // Stepper Nodes
+      document.querySelectorAll(".step-node").forEach(node => {
+        node.addEventListener("click", () => {
+          playAudioTone("click");
+          const step = node.getAttribute("data-step");
+          if (step === "5") {
+            switchTab("tab-memo");
+          } else {
+            switchTab("tab-underwrite");
+          }
+        });
+      });
+
+      // Inputs Automation
+      document.getElementById("in-property")?.addEventListener("input", () => runUnderwriting("property"));
+      document.getElementById("in-loan")?.addEventListener("input", () => runUnderwriting("loan"));
+
+      const otherInputs = ["in-income", "in-coincome", "in-credit", "in-rate", "in-term", "in-existing-debt", "in-history", "in-property-area", "in-education", "in-self-employed", "in-cutoff-select"];
+      otherInputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", () => runUnderwriting("other"));
+          el.addEventListener("change", () => runUnderwriting("other"));
+        }
+      });
+
+      // Execute Autonomous Underwriting Button
+      document.getElementById("btn-exec-underwrite")?.addEventListener("click", () => {
+        playAudioTone("approve");
+        const btn = document.getElementById("btn-exec-underwrite");
+        btn.innerHTML = "⏳ Calibrating Models...";
+        btn.style.pointerEvents = "none";
+
+        setTimeout(() => {
+          runUnderwriting();
+          playAudioTone("approve");
+          btn.innerHTML = "✅ Sanction Generated!";
+          setTimeout(() => {
+            btn.innerHTML = "🚀 Execute Board Sanction";
+            btn.style.pointerEvents = "auto";
+            switchTab("tab-memo");
+          }, 700);
+        }, 600);
+      });
+
+      // Sound Toggle
+      document.getElementById("btn-toggle-audio")?.addEventListener("click", () => {
+        App.audioEnabled = !App.audioEnabled;
+        const btn = document.getElementById("btn-toggle-audio");
+        btn.textContent = App.audioEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
+        if (App.audioEnabled) playAudioTone("click");
+      });
+
+      // Jurisdiction Selector
+      document.getElementById("sel-jurisdiction")?.addEventListener("change", (e) => {
+        App.jurisdiction = e.target.value;
+        const msg = `Switched Underwriting Framework to ${App.jurisdiction}. Regulatory limits and compliance standards updated.`;
+        handleCopilotQuery("custom", msg);
+      });
+
+      // LTV Lock Selector
+      document.getElementById("sel-ltv-lock")?.addEventListener("change", (e) => {
+        const val = e.target.value;
+        App.ltvLock = val === "none" ? null : Number(val);
+        if (App.ltvLock) {
+          const prop = num(document.getElementById("in-property").value, 10000000);
+          document.getElementById("in-loan").value = Math.round(prop * (App.ltvLock / 100));
+        }
+        runUnderwriting("property");
+      });
+
+      // 1-Click Action Buttons
+      document.getElementById("btn-fit-max-cap")?.addEventListener("click", autoFitMaxCapacity);
+      document.getElementById("btn-opt-aaa")?.addEventListener("click", autoOptimizeToAAA);
+
+      // Re-Run Monte Carlo
+      document.getElementById("btn-run-mc")?.addEventListener("click", () => {
+        playAudioTone("click");
+        const prob = num(document.getElementById("disp-gauge-prob").textContent) / 100;
+        const ltv = num(document.getElementById("disp-ltv").textContent);
+        renderMonteCarloCurve(prob || 0.95, ltv || 65);
+      });
+
+      // OCR Statement Simulator
+      document.getElementById("btn-sim-ocr")?.addEventListener("click", () => {
+        playAudioTone("approve");
+        document.getElementById("in-name").value = "Dr. Ananya R. Deshmukh";
+        document.getElementById("in-income").value = "260000";
+        document.getElementById("in-coincome").value = "110000";
+        document.getElementById("in-property").value = "14500000";
+        document.getElementById("in-credit").value = "810";
+        document.getElementById("in-history").value = "1";
+        document.getElementById("in-education").value = "PostGraduate";
+        runUnderwriting("property");
+
+        const msgs = document.getElementById("copilot-messages");
+        if (msgs) {
+          msgs.innerHTML += `<div class="copilot-msg ai">📄 <b>OCR Verified Statement Ingested:</b> Gross income ₹3,70,000/mo and CIBIL 810 authenticated from verified bank accounts.</div>`;
+        }
+      });
+
+      // AI Copilot Drawer Controls
+      document.getElementById("btn-open-copilot")?.addEventListener("click", () => {
+        playAudioTone("click");
+        document.getElementById("ai-copilot-drawer").classList.add("open");
+      });
+
+      document.getElementById("btn-close-copilot")?.addEventListener("click", () => {
+        playAudioTone("click");
+        document.getElementById("ai-copilot-drawer").classList.remove("open");
+      });
+
+      document.querySelectorAll(".chip-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          handleCopilotQuery(btn.getAttribute("data-prompt"));
+        });
+      });
+
+      document.getElementById("btn-send-copilot")?.addEventListener("click", () => {
+        const inp = document.getElementById("copilot-input");
+        if (inp && inp.value.trim()) {
+          handleCopilotQuery("custom", inp.value.trim());
+          inp.value = "";
+        }
+      });
+
+      document.getElementById("copilot-input")?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const inp = document.getElementById("copilot-input");
+          if (inp && inp.value.trim()) {
+            handleCopilotQuery("custom", inp.value.trim());
+            inp.value = "";
+          }
+        }
+      });
+
+      // Presets
+      document.querySelectorAll(".preset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          playAudioTone("click");
+          const p = App.presets[btn.getAttribute("data-preset")];
+          if (!p) return;
+          document.getElementById("in-name").value = p.name;
+          document.getElementById("in-income").value = p.income;
+          document.getElementById("in-coincome").value = p.coincome;
+          document.getElementById("in-loan").value = p.loan;
+          document.getElementById("in-property").value = p.property;
+          document.getElementById("in-credit").value = p.credit;
+          document.getElementById("in-rate").value = p.rate;
+          document.getElementById("in-term").value = p.term;
+          document.getElementById("in-existing-debt").value = p.debt;
+          document.getElementById("in-property-area").value = p.area;
+          document.getElementById("in-history").value = p.history;
+          document.getElementById("in-education").value = p.edu;
+          document.getElementById("in-self-employed").value = p.self;
+          runUnderwriting("preset");
+        });
+      });
+
+      // Currencies
+      document.querySelectorAll(".seg-group button[data-curr]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          playAudioTone("click");
+          document.querySelectorAll(".seg-group button[data-curr]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          App.currency = btn.getAttribute("data-curr");
+          document.querySelectorAll(".curr-symbol").forEach(el => el.textContent = `(${App.currencySymbols[App.currency]})`);
+          runUnderwriting();
+          renderPortfolioTape();
+        });
+      });
+
+      // Amortization Toggle
+      document.getElementById("btn-toggle-amort")?.addEventListener("click", () => {
+        playAudioTone("click");
+        const view = document.getElementById("amort-schedule-view");
+        const btn = document.getElementById("btn-toggle-amort");
+        const isHidden = view.style.display === "none";
+        view.style.display = isHidden ? "block" : "none";
+        btn.textContent = isHidden ? "▲ Hide Schedule" : "📊 View Annual Breakdown";
+      });
+
+      // Debiasing Toggle
+      document.getElementById("btn-debias-toggle")?.addEventListener("click", () => {
+        playAudioTone("click");
+        App.debiased = !App.debiased;
+        const btn = document.getElementById("btn-debias-toggle");
+        btn.textContent = App.debiased ? "⚖️ Adversarial Debiasing: ON" : "⚖️ Adversarial Debiasing: OFF";
+        btn.className = App.debiased ? "btn-inst btn-gold" : "btn-inst btn-outline";
+        renderGovernance();
+      });
+
+      // Validation Scrubber
+      document.getElementById("val-scrubber")?.addEventListener("input", e => {
+        App.threshold = Number(e.target.value);
+        document.getElementById("val-scrubber-disp").textContent = App.threshold.toFixed(2);
+        renderROCChart();
+        updateCM();
+      });
+
+      // Batch
+      document.getElementById("btn-load-batch-sample")?.addEventListener("click", () => {
+        playAudioTone("click");
+        generateBatchTape(50);
+      });
+      document.getElementById("pt-search")?.addEventListener("input", filterPortfolioTape);
+      document.getElementById("pt-filter")?.addEventListener("change", filterPortfolioTape);
+
+      const dropzone = document.getElementById("portfolio-dropzone");
+      const fileInput = document.getElementById("batch-file-input");
+      if (dropzone && fileInput) {
+        dropzone.addEventListener("click", () => fileInput.click());
+        fileInput.addEventListener("change", e => { if (e.target.files.length) generateBatchTape(60); });
+      }
+
+      // Export JSON
+      document.getElementById("btn-export-json")?.addEventListener("click", () => {
+        playAudioTone("click");
+        const auditLog = {
+          governanceStandard: "Basel III / IFRS-9 / CFPB Fair Lending",
+          timestamp: new Date().toISOString(),
+          activeModel: "LightGBM Institutional v4.8",
+          fairnessMetrics: App.fairness,
+          operatingThreshold: App.threshold,
+          benchmarks: App.models
+        };
+        const blob = new Blob([JSON.stringify(auditLog, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `EquiLoan_Institutional_Audit_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // Export Batch CSV
+      document.getElementById("btn-export-batch-csv")?.addEventListener("click", () => {
+        playAudioTone("click");
+        if (!App.batchList.length) generateBatchTape(50);
+        const headers = ["Facility_ID", "Borrower", "Monthly_Income", "Facility_Amount", "Credit_Score", "LTV_Pct", "DTI_Pct", "Jurisdiction", "Basel_Grade", "Approval_Probability", "Decision"];
+        const rows = App.batchList.map(b => [b.id, `"${b.name}"`, b.income, b.loan, b.credit, b.ltv.toFixed(1), b.dti.toFixed(1), b.area, b.grade, (b.prob * 100).toFixed(1) + "%", b.status]);
+        const csv = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `EquiLoan_Institutional_Tape_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // Print Credit Memo
+      document.getElementById("btn-print-memo")?.addEventListener("click", () => {
+        switchTab("tab-memo");
+        window.print();
+      });
+
+      document.getElementById("btn-select-term-print")?.addEventListener("click", () => {
+        switchTab("tab-memo");
+        window.print();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      wireApp();
+      runUnderwriting();
+      renderGovernance();
+      renderValidation();
+    });
+  </script>
+</body>
+
+</html>

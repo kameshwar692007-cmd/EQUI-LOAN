@@ -1,0 +1,6 @@
+Threshold Config,Lower Thresh (Approve),Upper Thresh (Reject),Automated Coverage %,Human Review %,Accuracy @ Coverage,Error Rate @ Coverage,False Approval Rate,False Rejection Rate
+Forced Binary (0.50 cutoff),0.5,0.5,100.0,0.0,0.8693,0.1307,0.1118,0.0189
+"Band [0.20, 0.80]",0.2,0.8,83.52,16.48,0.9089,0.0911,0.0868,0.0043
+"Band [0.30, 0.70]",0.3,0.7,91.69,8.31,0.8931,0.1069,0.0996,0.0073
+"Band [0.35, 0.65]",0.35,0.65,94.25,5.75,0.8869,0.1131,0.1036,0.0095
+"Band [0.40, 0.60]",0.4,0.6,96.35,3.65,0.8812,0.1188,0.107,0.0118

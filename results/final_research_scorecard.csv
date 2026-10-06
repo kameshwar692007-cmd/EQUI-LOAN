@@ -1,0 +1,4 @@
+Framework Candidate,ROC-AUC,Brier Score,Disparate Impact Ratio (DIR),Feature Stability (Spearman),Composite Research Score
+"Baseline Standard XGBoost (Uncalibrated, Binary Forced)",0.9215,0.0718,0.745,0.942,84.1
+"Standard Calibrated XGBoost (Platt Scaling, Binary Forced)",0.9215,0.052,0.745,0.942,84.89
+EquiLoan Proposed Integrated Framework (Calibrated + Tri-State Abstention + Fairness Audit),0.958,0.041,0.885,0.958,92.7
