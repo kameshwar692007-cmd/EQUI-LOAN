@@ -13,9 +13,14 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 from sklearn.calibration import CalibratedClassifierCV
-from data_validation import DataValidator
-from preprocessing import create_preprocessing_pipeline
-from baseline_models import get_candidate_models
+try:
+    from data_validation import DataValidator, get_dataset_path
+    from preprocessing import create_preprocessing_pipeline
+    from baseline_models import get_candidate_models
+except ImportError:
+    from src.data_validation import DataValidator, get_dataset_path
+    from src.preprocessing import create_preprocessing_pipeline
+    from src.baseline_models import get_candidate_models
 
 def evaluate_abstention_layer(df: pd.DataFrame, model_name: str = 'XGBoost', lower_thresholds: list = [0.20, 0.30, 0.35, 0.40], upper_thresholds: list = [0.80, 0.70, 0.65, 0.60], drop_leakage: bool = True, random_state: int = 42):
     """
@@ -106,7 +111,7 @@ def evaluate_abstention_layer(df: pd.DataFrame, model_name: str = 'XGBoost', low
     return pd.DataFrame(results)
 
 if __name__ == "__main__":
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     df_nat, df_bal = validator.prepare_experimental_conditions()
     

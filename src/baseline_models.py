@@ -17,8 +17,12 @@ from sklearn.naive_bayes import GaussianNB
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, brier_score_loss
 
-from data_validation import DataValidator
-from preprocessing import create_preprocessing_pipeline
+try:
+    from data_validation import DataValidator, get_dataset_path
+    from preprocessing import create_preprocessing_pipeline
+except ImportError:
+    from src.data_validation import DataValidator, get_dataset_path
+    from src.preprocessing import create_preprocessing_pipeline
 
 def get_candidate_models(random_state=42):
     return {
@@ -89,7 +93,7 @@ def evaluate_baseline_cv(df: pd.DataFrame, drop_leakage: bool = True, n_splits: 
     return pd.DataFrame(results)
 
 if __name__ == "__main__":
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     df_nat, df_bal = validator.prepare_experimental_conditions()
     

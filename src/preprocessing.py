@@ -88,11 +88,15 @@ def create_preprocessing_pipeline(df: pd.DataFrame, drop_leakage: bool = True, a
     return preprocessor, num_cols, cat_cols
 
 if __name__ == "__main__":
-    from data_validation import DataValidator
+    try:
+        from data_validation import DataValidator, get_dataset_path
+    except ImportError:
+        from src.data_validation import DataValidator, get_dataset_path
     import os
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     df_nat, _ = validator.prepare_experimental_conditions()
     
     preprocessor, num_c, cat_c = create_preprocessing_pipeline(df_nat, drop_leakage=True, apply_iqr=True)
     print(f"[PREPROCESSING] Pipeline instantiated. Numeric features: {len(num_c)}, Categorical features: {len(cat_c)}")
+

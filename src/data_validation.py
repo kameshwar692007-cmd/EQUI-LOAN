@@ -118,8 +118,19 @@ class DataValidator:
         
         return self.df_natural, self.df_balanced
 
+def get_dataset_path():
+    candidates = [
+        os.path.join("data", "raw", "loan_v2_real_distribution.csv"),
+        os.path.join("..", "data", "raw", "loan_v2_real_distribution.csv"),
+        os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv"),
+    ]
+    for p in candidates:
+        if os.path.exists(p):
+            return p
+    return candidates[0]
+
 if __name__ == "__main__":
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     health = validator.inspect_health()
     print("\n--- DATA HEALTH SUMMARY ---")
@@ -132,3 +143,4 @@ if __name__ == "__main__":
     print(leak_df.to_string(index=False))
     
     validator.prepare_experimental_conditions()
+

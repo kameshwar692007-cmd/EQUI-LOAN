@@ -1,15 +1,22 @@
 # Loan Approval Prediction - Part 1
 import warnings; warnings.filterwarnings("ignore")
-import pandas as pd, matplotlib.pyplot as plt, seaborn as sns
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score,roc_auc_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from xgboost import XGBClassifier
+
 try:
- from xgboost import XGBClassifier
-except:
- import subprocess,sys; subprocess.check_call([sys.executable,"-m","pip","install","-q","xgboost"]); from xgboost import XGBClassifier
-df=pd.read_csv("/content/Loan(1).csv")
+    from data_validation import get_dataset_path
+except ImportError:
+    from src.data_validation import get_dataset_path
+import os
+
+df = pd.read_csv(get_dataset_path())
 drop=[c for c in ["Unnamed: 0","id","year"] if c in df.columns]
 df_base=df.drop(columns=drop).copy()
 X=df_base.drop("status",axis=1); y=df_base["status"]

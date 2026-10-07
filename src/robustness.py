@@ -11,9 +11,14 @@ import numpy as np
 from scipy.stats import spearmanr
 from sklearn.model_selection import StratifiedKFold
 
-from data_validation import DataValidator
-from preprocessing import create_preprocessing_pipeline
-from baseline_models import get_candidate_models
+try:
+    from data_validation import DataValidator, get_dataset_path
+    from preprocessing import create_preprocessing_pipeline
+    from baseline_models import get_candidate_models
+except ImportError:
+    from src.data_validation import DataValidator, get_dataset_path
+    from src.preprocessing import create_preprocessing_pipeline
+    from src.baseline_models import get_candidate_models
 
 def calculate_feature_stability(df: pd.DataFrame, model_name: str = 'XGBoost', n_splits: int = 5, drop_leakage: bool = True, random_state: int = 42):
     """
@@ -93,7 +98,7 @@ def calculate_feature_stability(df: pd.DataFrame, model_name: str = 'XGBoost', n
     return metrics, stability_summary
 
 if __name__ == "__main__":
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     df_nat, df_bal = validator.prepare_experimental_conditions()
     

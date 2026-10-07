@@ -9,9 +9,14 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
-from data_validation import DataValidator
-from preprocessing import create_preprocessing_pipeline
-from baseline_models import get_candidate_models
+try:
+    from data_validation import DataValidator, get_dataset_path
+    from preprocessing import create_preprocessing_pipeline
+    from baseline_models import get_candidate_models
+except ImportError:
+    from src.data_validation import DataValidator, get_dataset_path
+    from src.preprocessing import create_preprocessing_pipeline
+    from src.baseline_models import get_candidate_models
 
 def audit_demographic_fairness(df: pd.DataFrame, model_name: str = 'XGBoost', sensitive_cols: list = ['gender', 'region', 'age'], drop_leakage: bool = True, random_state: int = 42):
     """
@@ -77,7 +82,7 @@ def audit_demographic_fairness(df: pd.DataFrame, model_name: str = 'XGBoost', se
     return pd.DataFrame(fairness_metrics), df_results
 
 if __name__ == "__main__":
-    filepath = os.path.join("dataset which u should use for training and testing", "loan_v2 (real distribution).csv")
+    filepath = get_dataset_path()
     validator = DataValidator(filepath)
     df_nat, df_bal = validator.prepare_experimental_conditions()
     
